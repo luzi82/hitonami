@@ -1,6 +1,7 @@
 #include "HNData.h"
 
 #include "CCData.h"
+#include "CCFileUtils.h"
 
 namespace hn{
 
@@ -53,6 +54,15 @@ void HNData::setZero(){
 	if(buf==NULL)return;
 	
 	memset(buf,0,size);
+}
+
+HNData* HNData::fromFile(const std::string& aFilename){
+	cocos2d::Data d=cocos2d::FileUtils::getInstance()->getDataFromFile(aFilename);
+	HNData* ret=new HNData();
+	delete ret->mData;
+	ret->mData = NULL;
+	ret->mData=new cocos2d::Data(d);
+	return ret;
 }
 
 } // namespace hn

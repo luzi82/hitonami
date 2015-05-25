@@ -25,6 +25,9 @@ public:
 	
 	CREATE_FUNC(HNData);
 
+public:
+	static HNData* fromFile(const std::string& aFilename);
+
 private:
 	cocos2d::Data* mData;
 };

@@ -27,6 +27,7 @@ ut.addCase=function(t,f){
 
 ut.run=function(){
 	var i;
+	var allGood=true;
 	for(i in ut.caseList){
 		var c = ut.caseList[i];
 		var good = false;
@@ -41,7 +42,12 @@ ut.run=function(){
 		if(good){
 			cc.log("TEST PASS: "+c.title);
 		}else{
+			allGood = false;
 			cc.log("TEST FAIL: "+c.title);
 		}
+		cc.log("===");
+	}
+	if(allGood){
+		cc.log("ALL TEST PASS");
 	}
 }
