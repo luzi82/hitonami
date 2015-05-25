@@ -22,6 +22,9 @@
 #include "network/jsb_websocket.h"
 #include "network/jsb_socketio.h"
 
+// hitonami
+#include "jsb_cocos2dx_hitonami.hpp"
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/CCJavascriptJavaBridge.h"
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
@@ -108,6 +111,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     // 3d extension can be commented out to reduce the package
     sc->addRegisterCallback(register_all_cocos2dx_3d_extension);
     
+    // hitonami
+    sc->addRegisterCallback(register_all_cocos2dx_hitonami);
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     sc->addRegisterCallback(JavascriptJavaBridge::_js_register);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
