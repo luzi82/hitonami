@@ -46,6 +46,9 @@ ut.run=function(){
 			cc.log("TEST FAIL: "+c.title);
 		}
 		cc.log("===");
+		if(!good){
+			break;
+		}
 	}
 	if(allGood){
 		cc.log("ALL TEST PASS");
