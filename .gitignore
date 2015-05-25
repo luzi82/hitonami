@@ -1,4 +1,10 @@
 /.project
 /3rd-party/
+/hitonami/frameworks/custom/
+/hitonami/frameworks/js-bindings/bindings/auto/api/
 /hitonami/linux-build/
 /hitonami/runtime/
+/hitonami/tools/bindings-generator/clang/__init__.pyc
+/hitonami/tools/bindings-generator/clang/cindex.pyc
+/hitonami/tools/bindings-generator/clang/enumerations.pyc
+/hitonami/tools/tojs/userconf.ini
