@@ -28,7 +28,7 @@ public:
 public:
 	static HNData* fromFile(const std::string& aFilename);
 
-private:
+public:
 	cocos2d::Data* mData;
 };
 
