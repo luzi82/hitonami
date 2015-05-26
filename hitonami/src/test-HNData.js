@@ -127,3 +127,25 @@ ut.addCase("koCYCgOv HNData base64",function(){
 	ut.t("JmMftJWB",!d.isNull());
 	ut.eq("AGNzPsKc",d.toBase64(),"BzC/MyH6V59lzWu478Q1EJFujkZE8ShdXayLb8poKhA=");
 });
+
+ut.addCase("bLRWLcbT HNData",function(){
+	var u;
+	for(u in case_bLRWLcbT){
+		var c=case_bLRWLcbT[u];
+		var hex=c[0];
+		var b64=c[1];
+		var len=c[2];
+		
+		var bin0=hn.HNData.fromHex(hex);
+		ut.eq("piNVJGkF",bin0.getSize(),len);
+		ut.eq("AsKUhpCr",bin0.toHex(),hex);
+		ut.eq("VviZBmoM",bin0.toBase64(),b64);
+
+		var bin1=hn.HNData.fromBase64(b64);
+		ut.eq("eRoFeuQV",bin1.getSize(),len);
+		ut.eq("EmurIEdQ",bin1.toHex(),hex);
+		ut.eq("yxFfKWGk",bin1.toBase64(),b64);
+		
+		ut.t("uEXtTYnh",bin0.equal(bin1));
+	}
+});

@@ -30,6 +30,8 @@ public:
 
 public:
 	static HNData* fromFile(const std::string& aFilename);
+	static HNData* fromHex(const std::string& aHex);
+	static HNData* fromBase64(const std::string& aBase64);
 
 public:
 	cocos2d::Data* mData;

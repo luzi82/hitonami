@@ -116,4 +116,11 @@ std::string HNData::toBase64(){
 	return ret;
 }
 
+HNData* HNData::fromHex(const std::string& aHex){
+	return NULL;
+}
+HNData* HNData::fromBase64(const std::string& aBase64){
+	return NULL;
+}
+
 } // namespace hn

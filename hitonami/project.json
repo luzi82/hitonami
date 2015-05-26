@@ -11,6 +11,7 @@
     "modules" : ["cocos2d"],
 
     "jsList" : [
+        "src/case-bLRWLcbT.js",
         "src/unittest.js",
         "src/test-HNData.js",
         "src/resource.js",
