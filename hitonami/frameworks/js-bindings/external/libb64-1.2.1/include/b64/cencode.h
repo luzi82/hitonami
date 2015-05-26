@@ -17,7 +17,7 @@ typedef struct
 {
 	base64_encodestep step;
 	char result;
-	int stepcount;
+	// int stepcount; // luzi82@gmail.com: we dont need endline
 } base64_encodestate;
 
 void base64_init_encodestate(base64_encodestate* state_in);
