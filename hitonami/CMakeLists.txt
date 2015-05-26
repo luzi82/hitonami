@@ -261,6 +261,7 @@ include_directories(frameworks/js-bindings/cocos2d-x/external/xxhash)
 include_directories(
   frameworks/custom/auto
   frameworks/js-bindings/hitonami
+  frameworks/js-bindings/external/libb64-1.2.1/include
 )
 
 set(GAME_SRC
@@ -268,6 +269,7 @@ set(GAME_SRC
   frameworks/runtime-src/Classes/AppDelegate.cpp
   frameworks/js-bindings/hitonami/HNData.cpp
   frameworks/custom/auto/jsb_cocos2dx_hitonami.cpp
+  frameworks/js-bindings/external/libb64-1.2.1/src/cencode.c
 )
 
 # cocos2d

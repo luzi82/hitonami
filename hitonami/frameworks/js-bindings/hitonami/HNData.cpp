@@ -3,6 +3,11 @@
 #include "CCData.h"
 #include "CCFileUtils.h"
 
+extern "C" 
+{
+#include "b64/cencode.h"
+}
+
 namespace hn{
 
 HNData::HNData():
@@ -72,21 +77,43 @@ std::string HNData::toHex(){
 	if(size==0)return "";
 	
 	unsigned char* srcPtr=mData->getBytes();
-	char* ucl=new char[size<<1];
-	char* uclPtr=ucl;
+	char* retBuf=new char[size<<1];
+	char* retBufPtr=retBuf;
 	for(int i=0;i<size;++i){
-		sprintf(uclPtr,"%02x",*srcPtr);
-		uclPtr+=2;
+		sprintf(retBufPtr,"%02x",*srcPtr);
+		retBufPtr+=2;
 		++srcPtr;
 	}
-	std::string ret(ucl,size<<1);
-	delete [] ucl; ucl = NULL;
+	std::string ret(retBuf,size<<1);
+	delete [] retBuf; retBuf = NULL;
 	
 	return ret;
 }
 
 std::string HNData::toBase64(){
-	return "";
+	if(mData==NULL)return "";
+	if(mData->isNull())return "";
+	ssize_t size = mData->getSize();
+	if(size==0)return "";
+	
+	ssize_t retBufSize=size;
+	retBufSize<<=2;
+	retBufSize/=3;
+	retBufSize+=10;
+
+	unsigned char* srcPtr=mData->getBytes();
+	char* retBuf=new char[retBufSize];
+	ssize_t retBufLen = 0;
+	base64_encodestate s;
+	base64_init_encodestate(&s);
+
+	retBufLen += base64_encode_block((char*)srcPtr, size, retBuf, &s);
+	retBufLen += base64_encode_blockend(retBuf+retBufLen, &s);
+	
+	std::string ret(retBuf,retBufLen);
+	delete [] retBuf; retBuf = NULL;
+
+	return ret;
 }
 
 } // namespace hn
