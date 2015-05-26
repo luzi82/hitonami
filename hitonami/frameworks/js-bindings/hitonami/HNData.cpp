@@ -150,6 +150,9 @@ HNData* HNData::fromHex(const std::string& aHex){
 	return ret;
 }
 HNData* HNData::fromBase64(const std::string& aBase64){
+	int srcSize = aBase64.size();
+	if(srcSize&3)return NULL; // non 4 multi length
+
 	return NULL;
 }
 
