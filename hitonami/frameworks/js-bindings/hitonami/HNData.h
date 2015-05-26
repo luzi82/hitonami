@@ -23,6 +23,9 @@ public:
 	bool isNull();
 	void setZero();
 	
+	std::string toHex();
+	std::string toBase64();
+	
 	CREATE_FUNC(HNData);
 
 public:

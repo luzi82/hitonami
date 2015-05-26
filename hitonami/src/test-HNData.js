@@ -118,12 +118,12 @@ ut.addCase("EbUPdjQG HNData hex",function(){
 	var d = hn.HNData.fromFile("res/32B.dat");
 	ut.eq("iKWswsLU",d.getSize(),32);
 	ut.t("zMdoexlv",!d.isNull());
-	ut.eq("XMhUEsXs",d.hex(),"0730bf3321fa579f65cd6bb8efc43510916e8e4644f1285d5dac8b6fca682a10");
+	ut.eq("XMhUEsXs",d.toHex(),"0730bf3321fa579f65cd6bb8efc43510916e8e4644f1285d5dac8b6fca682a10");
 });
 
 ut.addCase("koCYCgOv HNData base64",function(){
 	var d = hn.HNData.fromFile("res/32B.dat");
 	ut.eq("pQBxPRXH",d.getSize(),32);
 	ut.t("JmMftJWB",!d.isNull());
-	ut.eq("AGNzPsKc",d.base64(),"BzC/MyH6V59lzWu478Q1EJFujkZE8ShdXayLb8poKhA=");
+	ut.eq("AGNzPsKc",d.toBase64(),"BzC/MyH6V59lzWu478Q1EJFujkZE8ShdXayLb8poKhA=");
 });

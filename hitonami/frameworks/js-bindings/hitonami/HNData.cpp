@@ -65,4 +65,28 @@ HNData* HNData::fromFile(const std::string& aFilename){
 	return ret;
 }
 
+std::string HNData::toHex(){
+	if(mData==NULL)return "";
+	if(mData->isNull())return "";
+	ssize_t size = mData->getSize();
+	if(size==0)return "";
+	
+	unsigned char* srcPtr=mData->getBytes();
+	char* ucl=new char[size<<1];
+	char* uclPtr=ucl;
+	for(int i=0;i<size;++i){
+		sprintf(uclPtr,"%02x",*srcPtr);
+		uclPtr+=2;
+		++srcPtr;
+	}
+	std::string ret(ucl,size<<1);
+	delete [] ucl; ucl = NULL;
+	
+	return ret;
+}
+
+std::string HNData::toBase64(){
+	return "";
+}
+
 } // namespace hn
