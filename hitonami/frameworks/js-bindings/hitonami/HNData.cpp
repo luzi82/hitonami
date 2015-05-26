@@ -117,7 +117,37 @@ std::string HNData::toBase64(){
 }
 
 HNData* HNData::fromHex(const std::string& aHex){
-	return NULL;
+	int srcSize = aHex.size();
+	if(srcSize&1)return NULL; // odd length
+	
+	int i;
+	for(i=0;i<srcSize;++i){
+		char c=aHex[i];
+		if(!(((c>='0')&&(c<='9'))||((c>='a')&&(c<='f')))){
+			return NULL;
+		}
+	}
+	
+	int dstSize = (srcSize>>1);
+	unsigned char* dstBuf=new unsigned char[dstSize];
+	unsigned char* dstPtr=dstBuf;
+	const char* srcPtr=aHex.data();
+	
+	for(i=0;i<srcSize;i+=2){
+		sscanf(srcPtr,"%2hhx",dstPtr);
+		srcPtr+=2;
+		++dstPtr;
+	}
+	
+	HNData* ret=new HNData();
+	delete ret->mData;ret->mData = NULL;
+	ret->mData = new cocos2d::Data();
+	ret->mData->copy(dstBuf,dstSize);
+	
+	delete [] dstBuf;dstBuf=NULL;
+	dstPtr=NULL;
+	
+	return ret;
 }
 HNData* HNData::fromBase64(const std::string& aBase64){
 	return NULL;
