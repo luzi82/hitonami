@@ -186,6 +186,9 @@ ut.addCase("fIALLKnM HNData base64 fail",function(){
 	ut.eq("WVfGqdmY",hn.HNData.fromBase64("a=aaaaaa"),null);
 	ut.eq("pnrdviXa",hn.HNData.fromBase64("aa=aaaaa"),null);
 	ut.eq("ntVcRLsn",hn.HNData.fromBase64("aaa=aaaa"),null);
+	ut.eq("FAAEdRKm",hn.HNData.fromBase64("aaaa=aaa"),null);
+	ut.eq("cXbLkrmS",hn.HNData.fromBase64("aaaaa=aa"),null);
+	ut.eq("WszSddqJ",hn.HNData.fromBase64("aaaaaa=a"),null);
 	ut.eq("kdQrtxSr",hn.HNData.fromBase64("aaaa="),null);
 	ut.eq("RfAxkAXo",hn.HNData.fromBase64("aaaa=="),null);
 	ut.eq("IokLlRvd",hn.HNData.fromBase64("aaaa==="),null);
