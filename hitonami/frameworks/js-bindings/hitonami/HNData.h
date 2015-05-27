@@ -36,6 +36,10 @@ public:
 
 public:
 	cocos2d::Data* mData;
+	
+private:
+	static bool isBase64Char(char);
+	static bool isHexChar(char);
 };
 
 } // namespace hn

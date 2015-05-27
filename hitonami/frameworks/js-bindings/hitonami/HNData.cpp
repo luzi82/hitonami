@@ -138,8 +138,7 @@ HNData* HNData::fromHex(const std::string& aHex){
 	
 	int i;
 	for(i=0;i<srcSize;++i){
-		char c=aHex[i];
-		if(!(((c>='0')&&(c<='9'))||((c>='a')&&(c<='f')))){
+		if(!isHexChar(aHex[i])){
 			return NULL;
 		}
 	}
@@ -170,6 +169,26 @@ HNData* HNData::fromBase64(const std::string& aBase64){
 	int srcSize = aBase64.size();
 	if(srcSize&3)return NULL; // non 4 multi length
 	
+	int i=0;
+	int aPart=srcSize-2;
+	for(i=0;i<aPart;++i){
+		if(!isBase64Char(aBase64[i]))return NULL;
+	}
+	if(aPart>=0){
+		char c0=aBase64[aPart];
+		char c1=aBase64[aPart+1];
+		if(c1=='='){
+			if(c0=='='){
+				// good
+			}else{
+				if(!isBase64Char(c0))return NULL;
+			}
+		}else{
+			if(!isBase64Char(c0))return NULL;
+			if(!isBase64Char(c1))return NULL;
+		}
+	}
+	
 	int dstSize = (srcSize*3/4)+10;
 	unsigned char* dstBuf=new unsigned char[dstSize];
 	const char* srcPtr=aBase64.data();
@@ -187,6 +206,22 @@ HNData* HNData::fromBase64(const std::string& aBase64){
 	delete [] dstBuf;dstBuf=NULL;
 
 	return ret;
+}
+
+bool HNData::isBase64Char(char c){
+	if((c>='0')&&(c<='9'))return true;
+	if((c>='a')&&(c<='z'))return true;
+	if((c>='A')&&(c<='Z'))return true;
+	if(c=='+')return true;
+	if(c=='/')return true;
+	return false;
+}
+
+bool HNData::isHexChar(char c){
+	if((c>='0')&&(c<='9'))return true;
+	if((c>='a')&&(c<='f'))return true;
+	if((c>='A')&&(c<='F'))return true;
+	return false;
 }
 
 } // namespace hn

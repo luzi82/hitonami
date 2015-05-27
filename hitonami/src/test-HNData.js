@@ -208,7 +208,7 @@ ut.addCase("BjPyLrwy HNData upper",function(){
 		hex=hex.toUpperCase();
 		
 		var bin0=hn.HNData.fromHex(hex);
-		ut.eq("piNVJGkF",bin0.getSize(),len);
-		ut.eq("VviZBmoM",bin0.toBase64(),b64);
+		ut.eq("sZOPnfvk "+len,bin0.getSize(),len);
+		ut.eq("dvIIGYxV "+len,bin0.toBase64(),b64);
 	}
 });
