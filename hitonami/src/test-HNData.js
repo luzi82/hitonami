@@ -154,6 +154,15 @@ ut.addCase("ywXnSJRQ HNData hex fail",function(){
 	ut.eq("crIgPaqn",hn.HNData.fromHex("!@"),null);
 	ut.eq("vkGZzavO",hn.HNData.fromHex("0"),null);
 	ut.eq("FkZxtOQD",hn.HNData.fromHex("a"),null);
+	ut.eq("hQjFrCAa",hn.HNData.fromHex("aaa"),null);
+	ut.eq("qrkgUNxr",hn.HNData.fromHex("0g"),null);
+	ut.eq("kDceGeZu",hn.HNData.fromHex("0z"),null);
+	ut.eq("PRRlmsAF",hn.HNData.fromHex("0G"),null);
+	ut.eq("nugyTLDU",hn.HNData.fromHex("0Z"),null);
+	ut.eq("WpgeFqYh",hn.HNData.fromHex("g0"),null);
+	ut.eq("MCKxxcGf",hn.HNData.fromHex("z0"),null);
+	ut.eq("HaDpBXTZ",hn.HNData.fromHex("G0"),null);
+	ut.eq("eNEVmDGP",hn.HNData.fromHex("Z0"),null);
 });
 
 ut.addCase("fIALLKnM HNData base64 fail",function(){
@@ -173,4 +182,20 @@ ut.addCase("fIALLKnM HNData base64 fail",function(){
 	ut.eq("TLiywTsL",hn.HNData.fromBase64("!@=="),null);
 	ut.eq("fQxxpftH",hn.HNData.fromBase64("!@#="),null);
 	ut.eq("qmFcKxQS",hn.HNData.fromBase64("!@#$"),null);
+});
+
+ut.addCase("BjPyLrwy HNData upper",function(){
+	var u;
+	for(u in case_bLRWLcbT){
+		var c=case_bLRWLcbT[u];
+		var hex=c[0];
+		var b64=c[1];
+		var len=c[2];
+		
+		hex=hex.toUpperCase();
+		
+		var bin0=hn.HNData.fromHex(hex);
+		ut.eq("piNVJGkF",bin0.getSize(),len);
+		ut.eq("VviZBmoM",bin0.toBase64(),b64);
+	}
 });
