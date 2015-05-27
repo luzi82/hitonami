@@ -1,6 +1,7 @@
 #ifndef __hn_data_h__
 #define __hn_data_h__
 
+#include <cstddef>
 #include "cocos2d.h"
 
 namespace cocos2d{

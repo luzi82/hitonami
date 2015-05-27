@@ -215,3 +215,11 @@ ut.addCase("BjPyLrwy HNData upper",function(){
 		ut.eq("dvIIGYxV "+len,bin0.toBase64(),b64);
 	}
 });
+
+ut.addCase("BjPyLrwy HNData equal",function(){
+	ut.t("vMZgzVph",hn.HNData.fromHex("deadbeef").equal(hn.HNData.fromHex("deadbeef")));
+	ut.t("DnVkgJkO",!hn.HNData.fromHex("deadbeef").equal(hn.HNData.fromHex("deadbeee")));
+	// ut.t("bfiegkaV",!hn.HNData.fromHex("deadbeef").equal(null)); // TODO, should able to handle null
+	ut.t("DLbTxiwg",!hn.HNData.fromHex("deadbeef").equal(hn.HNData.fromHex("")));
+	ut.t("BpBtTyRl",!hn.HNData.fromHex("deadbeef").equal(hn.HNData.fromHex("deadbe")));
+});
