@@ -180,10 +180,17 @@ ut.addCase("fIALLKnM HNData base64 fail",function(){
 	ut.eq("cgeRjhiX",hn.HNData.fromBase64("=="),null);
 	ut.eq("LFvyTXkz",hn.HNData.fromBase64("==="),null);
 	ut.eq("EfoMdkuj",hn.HNData.fromBase64("===="),null);
+	ut.eq("wYmDjlKf",hn.HNData.fromBase64("========"),null);
+	ut.eq("gIaZjAVj",hn.HNData.fromBase64("====aaaa"),null);
+	ut.eq("gReiYCCf",hn.HNData.fromBase64("=aaaaaaa"),null);
+	ut.eq("WVfGqdmY",hn.HNData.fromBase64("a=aaaaaa"),null);
+	ut.eq("pnrdviXa",hn.HNData.fromBase64("aa=aaaaa"),null);
+	ut.eq("ntVcRLsn",hn.HNData.fromBase64("aaa=aaaa"),null);
 	ut.eq("kdQrtxSr",hn.HNData.fromBase64("aaaa="),null);
 	ut.eq("RfAxkAXo",hn.HNData.fromBase64("aaaa=="),null);
 	ut.eq("IokLlRvd",hn.HNData.fromBase64("aaaa==="),null);
 	ut.eq("uZkXKcaS",hn.HNData.fromBase64("aaaa===="),null);
+	ut.eq("jZQsMSLm",hn.HNData.fromBase64("aaaaa==="),null);
 	ut.eq("vkGZzavO",hn.HNData.fromBase64("!==="),null);
 	ut.eq("TLiywTsL",hn.HNData.fromBase64("!@=="),null);
 	ut.eq("fQxxpftH",hn.HNData.fromBase64("!@#="),null);
