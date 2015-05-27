@@ -270,6 +270,7 @@ set(GAME_SRC
   frameworks/js-bindings/hitonami/HNData.cpp
   frameworks/custom/auto/jsb_cocos2dx_hitonami.cpp
   frameworks/js-bindings/external/libb64-1.2.1/src/cencode.c
+  frameworks/js-bindings/external/libb64-1.2.1/src/cdecode.c
 )
 
 # cocos2d

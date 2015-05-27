@@ -6,6 +6,7 @@
 extern "C" 
 {
 #include "b64/cencode.h"
+#include "b64/cdecode.h"
 }
 
 namespace hn{
@@ -61,6 +62,16 @@ void HNData::setZero(){
 	memset(buf,0,size);
 }
 
+bool HNData::equal(HNData* aFrom){
+	if(aFrom==NULL)return false;
+	if(isNull()&&(aFrom->isNull()))return true;
+	if(isNull())return false;
+	if(aFrom->isNull())return false;
+	if(getSize()!=aFrom->getSize())return false;
+	if(memcmp(mData->getBytes(),aFrom->mData->getBytes(),getSize())!=0)return false;
+	return true; 
+}
+
 HNData* HNData::fromFile(const std::string& aFilename){
 	cocos2d::Data d=cocos2d::FileUtils::getInstance()->getDataFromFile(aFilename);
 	HNData* ret=new HNData();
@@ -73,19 +84,23 @@ HNData* HNData::fromFile(const std::string& aFilename){
 std::string HNData::toHex(){
 	if(mData==NULL)return "";
 	if(mData->isNull())return "";
-	ssize_t size = mData->getSize();
-	if(size==0)return "";
+	ssize_t srcSize = mData->getSize();
+	if(srcSize==0)return "";
+	
+	ssize_t dstSize = srcSize<<1;
 	
 	unsigned char* srcPtr=mData->getBytes();
-	char* retBuf=new char[size<<1];
-	char* retBufPtr=retBuf;
-	for(int i=0;i<size;++i){
-		sprintf(retBufPtr,"%02x",*srcPtr);
-		retBufPtr+=2;
+	char* dstBuf=new char[dstSize+1];
+	char* dstBufPtr=dstBuf;
+	for(int i=0;i<srcSize;++i){
+		sprintf(dstBufPtr,"%02x",*srcPtr);
+		dstBufPtr+=2;
 		++srcPtr;
 	}
-	std::string ret(retBuf,size<<1);
-	delete [] retBuf; retBuf = NULL;
+	*dstBufPtr=0;dstBufPtr++;
+	
+	std::string ret(dstBuf,dstSize);
+	delete [] dstBuf; dstBuf = NULL;
 	
 	return ret;
 }
@@ -109,6 +124,7 @@ std::string HNData::toBase64(){
 
 	retBufLen += base64_encode_block((char*)srcPtr, size, retBuf, &s);
 	retBufLen += base64_encode_blockend(retBuf+retBufLen, &s);
+	*(retBuf+retBufLen)=0;
 	
 	std::string ret(retBuf,retBufLen);
 	delete [] retBuf; retBuf = NULL;
@@ -149,11 +165,28 @@ HNData* HNData::fromHex(const std::string& aHex){
 	
 	return ret;
 }
+
 HNData* HNData::fromBase64(const std::string& aBase64){
 	int srcSize = aBase64.size();
 	if(srcSize&3)return NULL; // non 4 multi length
+	
+	int dstSize = (srcSize*3/4)+10;
+	unsigned char* dstBuf=new unsigned char[dstSize];
+	const char* srcPtr=aBase64.data();
+	int dstLen = 0;
+	
+	base64_decodestate s;
+	base64_init_decodestate(&s);
+	dstLen += base64_decode_block(srcPtr, srcSize, (char*) dstBuf, &s);
 
-	return NULL;
+	HNData* ret=new HNData();
+	delete ret->mData;ret->mData = NULL;
+	ret->mData = new cocos2d::Data();
+	ret->mData->copy(dstBuf,dstLen);
+
+	delete [] dstBuf;dstBuf=NULL;
+
+	return ret;
 }
 
 } // namespace hn

@@ -22,6 +22,7 @@ public:
 	void clear();
 	bool isNull();
 	void setZero();
+	bool equal(HNData* aFrom);
 	
 	std::string toHex();
 	std::string toBase64();
