@@ -257,20 +257,27 @@ message(STATUS "Flatbuffers include dirs: ${FLATBUFFERS_INCLUDE_DIRS}")
 add_subdirectory(frameworks/js-bindings/cocos2d-x/external/xxhash)
 include_directories(frameworks/js-bindings/cocos2d-x/external/xxhash)
 
+# hitonami:
+add_definitions(-DPEDANTIC)
+
 # hitonami: cpp/h in src
 include_directories(
   frameworks/custom/auto
   frameworks/js-bindings/hitonami
   frameworks/js-bindings/external/libb64-1.2.1/include
+  frameworks/js-bindings/external/openssl-1.0.2a/include
+  frameworks/js-bindings/external/openssl-1.0.2a/crypto
 )
 
 set(GAME_SRC
   frameworks/runtime-src/proj.linux/main.cpp
   frameworks/runtime-src/Classes/AppDelegate.cpp
   frameworks/js-bindings/hitonami/HNData.cpp
+  frameworks/js-bindings/hitonami/HNSha256.cpp
   frameworks/custom/auto/jsb_cocos2dx_hitonami.cpp
   frameworks/js-bindings/external/libb64-1.2.1/src/cencode.c
   frameworks/js-bindings/external/libb64-1.2.1/src/cdecode.c
+  frameworks/js-bindings/external/openssl-1.0.2a/crypto/sha/sha256.c
 )
 
 # cocos2d

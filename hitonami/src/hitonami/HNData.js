@@ -82,12 +82,7 @@ hn.Data = __HNData;
  * @return {hn::HNData}
  */
 hn.Data.fromHex = function(str) {
-	var tmp = __hn.HNData._fromHex(str);
-	if (tmp == null)
-		return null;
-	var ret = new hn.Data();
-	ret.__hndata = tmp;
-	return ret;
+	return hn.Data._fromHNData( __hn.HNData._fromHex(str) );
 };
 
 /**
@@ -97,12 +92,7 @@ hn.Data.fromHex = function(str) {
  * @return {hn::HNData}
  */
 hn.Data.fromFile = function(str) {
-	var tmp = __hn.HNData._fromFile(str);
-	if (tmp == null)
-		return null;
-	var ret = new hn.Data();
-	ret.__hndata = tmp;
-	return ret;
+	return hn.Data._fromHNData( __hn.HNData._fromFile(str) );
 };
 
 /**
@@ -112,10 +102,13 @@ hn.Data.fromFile = function(str) {
  * @return {hn::HNData}
  */
 hn.Data.fromBase64 = function(str) {
-	var tmp = __hn.HNData._fromBase64(str);
-	if (tmp == null)
+	return hn.Data._fromHNData( __hn.HNData._fromBase64(str) );
+};
+
+hn.Data._fromHNData = function(hndata){
+	if (hndata == null)
 		return null;
 	var ret = new hn.Data();
-	ret.__hndata = tmp;
+	ret.__hndata = hndata;
 	return ret;
-};
+}
