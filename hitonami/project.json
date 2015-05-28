@@ -15,6 +15,7 @@
         "src/case-bLRWLcbT.js",
         "src/unittest.js",
         "src/test-HNData.js",
+        "src/test-HNSha256.js",
         "src/resource.js",
         "src/app.js"
     ]
