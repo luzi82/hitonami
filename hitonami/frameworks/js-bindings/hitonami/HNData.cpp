@@ -24,12 +24,12 @@ HNData::~HNData()
 
 bool HNData::init(){return true;}
 
-int HNData::getSize(){
+int HNData::_getSize(){
 	if(mData==NULL)return 0;
 	return mData->getSize();
 }
 
-void HNData::copy(HNData* aFrom){
+void HNData::_copy(HNData* aFrom){
 	delete mData;
 	mData = NULL;
 	
@@ -39,17 +39,17 @@ void HNData::copy(HNData* aFrom){
 	mData=new cocos2d::Data(*(aFrom->mData));
 }
 
-void HNData::clear(){
+void HNData::_clear(){
 	delete mData;
 	mData = NULL;
 }
 
-bool HNData::isNull(){
+bool HNData::_isNull(){
 	if(mData==NULL)return true;
 	return mData->isNull();
 }
 
-void HNData::setZero(){
+void HNData::_setZero(){
 	if(mData==NULL)return;
 	if(mData->isNull())return;
 	
@@ -62,17 +62,17 @@ void HNData::setZero(){
 	memset(buf,0,size);
 }
 
-bool HNData::equal(HNData* aFrom){
+bool HNData::_equal(HNData* aFrom){
 	if(aFrom==NULL)return false;
-	if(isNull()&&(aFrom->isNull()))return true;
-	if(isNull())return false;
-	if(aFrom->isNull())return false;
-	if(getSize()!=aFrom->getSize())return false;
-	if(memcmp(mData->getBytes(),aFrom->mData->getBytes(),getSize())!=0)return false;
+	if(_isNull()&&(aFrom->_isNull()))return true;
+	if(_isNull())return false;
+	if(aFrom->_isNull())return false;
+	if(_getSize()!=aFrom->_getSize())return false;
+	if(memcmp(mData->getBytes(),aFrom->mData->getBytes(),_getSize())!=0)return false;
 	return true; 
 }
 
-HNData* HNData::fromFile(const std::string& aFilename){
+HNData* HNData::_fromFile(const std::string& aFilename){
 	cocos2d::Data d=cocos2d::FileUtils::getInstance()->getDataFromFile(aFilename);
 	HNData* ret=new HNData();
 	delete ret->mData;
@@ -81,7 +81,7 @@ HNData* HNData::fromFile(const std::string& aFilename){
 	return ret;
 }
 
-std::string HNData::toHex(){
+std::string HNData::_toHex(){
 	if(mData==NULL)return "";
 	if(mData->isNull())return "";
 	ssize_t srcSize = mData->getSize();
@@ -105,7 +105,7 @@ std::string HNData::toHex(){
 	return ret;
 }
 
-std::string HNData::toBase64(){
+std::string HNData::_toBase64(){
 	if(mData==NULL)return "";
 	if(mData->isNull())return "";
 	ssize_t size = mData->getSize();
@@ -132,13 +132,13 @@ std::string HNData::toBase64(){
 	return ret;
 }
 
-HNData* HNData::fromHex(const std::string& aHex){
+HNData* HNData::_fromHex(const std::string& aHex){
 	int srcSize = aHex.size();
 	if(srcSize&1)return NULL; // odd length
 	
 	int i;
 	for(i=0;i<srcSize;++i){
-		if(!isHexChar(aHex[i])){
+		if(!_isHexChar(aHex[i])){
 			return NULL;
 		}
 	}
@@ -165,14 +165,14 @@ HNData* HNData::fromHex(const std::string& aHex){
 	return ret;
 }
 
-HNData* HNData::fromBase64(const std::string& aBase64){
+HNData* HNData::_fromBase64(const std::string& aBase64){
 	int srcSize = aBase64.size();
 	if(srcSize&3)return NULL; // non 4 multi length
 	
 	int i=0;
 	int aPart=srcSize-2;
 	for(i=0;i<aPart;++i){
-		if(!isBase64Char(aBase64[i]))return NULL;
+		if(!_isBase64Char(aBase64[i]))return NULL;
 	}
 	if(aPart>=0){
 		char c0=aBase64[aPart];
@@ -181,11 +181,11 @@ HNData* HNData::fromBase64(const std::string& aBase64){
 			if(c0=='='){
 				// good
 			}else{
-				if(!isBase64Char(c0))return NULL;
+				if(!_isBase64Char(c0))return NULL;
 			}
 		}else{
-			if(!isBase64Char(c0))return NULL;
-			if(!isBase64Char(c1))return NULL;
+			if(!_isBase64Char(c0))return NULL;
+			if(!_isBase64Char(c1))return NULL;
 		}
 	}
 	
@@ -208,7 +208,7 @@ HNData* HNData::fromBase64(const std::string& aBase64){
 	return ret;
 }
 
-bool HNData::isBase64Char(char c){
+bool HNData::_isBase64Char(char c){
 	if((c>='0')&&(c<='9'))return true;
 	if((c>='a')&&(c<='z'))return true;
 	if((c>='A')&&(c<='Z'))return true;
@@ -217,7 +217,7 @@ bool HNData::isBase64Char(char c){
 	return false;
 }
 
-bool HNData::isHexChar(char c){
+bool HNData::_isHexChar(char c){
 	if((c>='0')&&(c<='9'))return true;
 	if((c>='a')&&(c<='f'))return true;
 	if((c>='A')&&(c<='F'))return true;

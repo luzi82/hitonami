@@ -18,29 +18,29 @@ public:
 	bool init();
 
 public:
-	int getSize();
-	void copy(HNData* aFrom);
-	void clear();
-	bool isNull();
-	void setZero();
-	bool equal(HNData* aFrom);
+	int _getSize();
+	void _copy(HNData* aFrom);
+	void _clear();
+	bool _isNull();
+	void _setZero();
+	bool _equal(HNData* aFrom);
 	
-	std::string toHex();
-	std::string toBase64();
+	std::string _toHex();
+	std::string _toBase64();
 	
 	CREATE_FUNC(HNData);
 
 public:
-	static HNData* fromFile(const std::string& aFilename);
-	static HNData* fromHex(const std::string& aHex);
-	static HNData* fromBase64(const std::string& aBase64);
+	static HNData* _fromFile(const std::string& aFilename);
+	static HNData* _fromHex(const std::string& aHex);
+	static HNData* _fromBase64(const std::string& aBase64);
 
 public:
 	cocos2d::Data* mData;
 	
 private:
-	static bool isBase64Char(char);
-	static bool isHexChar(char);
+	static bool _isBase64Char(char);
+	static bool _isHexChar(char);
 };
 
 } // namespace hn

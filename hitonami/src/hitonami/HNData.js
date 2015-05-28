@@ -6,14 +6,14 @@ var hn = hn || {};
 function __HNData() {
 
 	this.setZero = function() {
-		return this.__hndata.setZero();
+		return this.__hndata._setZero();
 	};
 
 	/**
 	 * @method clear
 	 */
 	this.clear = function() {
-		return this.__hndata.clear();
+		return this.__hndata._clear();
 	};
 
 	/**
@@ -25,7 +25,7 @@ function __HNData() {
 	this.equal = function(hndata) {
 		if (hndata == null)
 			return false;
-		return this.__hndata.equal(hndata.__hndata);
+		return this.__hndata._equal(hndata.__hndata);
 	};
 
 	/**
@@ -33,7 +33,7 @@ function __HNData() {
 	 * @return {int}
 	 */
 	this.getSize = function() {
-		return this.__hndata.getSize();
+		return this.__hndata._getSize();
 	};
 
 	/**
@@ -41,7 +41,7 @@ function __HNData() {
 	 * @return {bool}
 	 */
 	this.isNull = function() {
-		return this.__hndata.isNull();
+		return this.__hndata._isNull();
 	};
 
 	/**
@@ -50,7 +50,7 @@ function __HNData() {
 	 *          arg0
 	 */
 	this.copy = function(hndata) {
-		return this.__hndata.copy(hndata.__hndata);
+		return this.__hndata._copy(hndata.__hndata);
 	};
 
 	/**
@@ -58,7 +58,7 @@ function __HNData() {
 	 * @return {String}
 	 */
 	this.toBase64 = function() {
-		return this.__hndata.toBase64();
+		return this.__hndata._toBase64();
 	};
 
 	/**
@@ -66,7 +66,7 @@ function __HNData() {
 	 * @return {String}
 	 */
 	this.toHex = function() {
-		return this.__hndata.toHex();
+		return this.__hndata._toHex();
 	};
 
 	this.__hndata = new __hn.HNData();
@@ -82,7 +82,7 @@ hn.Data = __HNData;
  * @return {hn::HNData}
  */
 hn.Data.fromHex = function(str) {
-	var tmp = __hn.HNData.fromHex(str);
+	var tmp = __hn.HNData._fromHex(str);
 	if (tmp == null)
 		return null;
 	var ret = new hn.Data();
@@ -97,7 +97,7 @@ hn.Data.fromHex = function(str) {
  * @return {hn::HNData}
  */
 hn.Data.fromFile = function(str) {
-	var tmp = __hn.HNData.fromFile(str);
+	var tmp = __hn.HNData._fromFile(str);
 	if (tmp == null)
 		return null;
 	var ret = new hn.Data();
@@ -112,7 +112,7 @@ hn.Data.fromFile = function(str) {
  * @return {hn::HNData}
  */
 hn.Data.fromBase64 = function(str) {
-	var tmp = __hn.HNData.fromBase64(str);
+	var tmp = __hn.HNData._fromBase64(str);
 	if (tmp == null)
 		return null;
 	var ret = new hn.Data();
