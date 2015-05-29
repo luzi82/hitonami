@@ -37,11 +37,11 @@ function __HNData() {
 	};
 
 	/**
-	 * @method isNull
+	 * @method isEmpty
 	 * @return {bool}
 	 */
-	this.isNull = function() {
-		return this.__hndata._isNull();
+	this.isEmpty = function() {
+		return this.__hndata._isEmpty();
 	};
 
 	/**

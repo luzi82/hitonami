@@ -44,7 +44,7 @@ void HNData::_clear(){
 	mData = NULL;
 }
 
-bool HNData::_isNull(){
+bool HNData::_isEmpty(){
 	if(mData==NULL)return true;
 	return mData->isNull();
 }
@@ -64,9 +64,9 @@ void HNData::_setZero(){
 
 bool HNData::_equal(HNData* aFrom){
 	if(aFrom==NULL)return false;
-	if(_isNull()&&(aFrom->_isNull()))return true;
-	if(_isNull())return false;
-	if(aFrom->_isNull())return false;
+	if(_isEmpty()&&(aFrom->_isEmpty()))return true;
+	if(_isEmpty())return false;
+	if(aFrom->_isEmpty())return false;
 	if(_getSize()!=aFrom->_getSize())return false;
 	if(memcmp(mData->getBytes(),aFrom->mData->getBytes(),_getSize())!=0)return false;
 	return true; 

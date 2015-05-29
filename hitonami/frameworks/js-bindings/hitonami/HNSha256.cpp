@@ -11,7 +11,6 @@ bool HNSha256::init(){return true;}
 
 HNData* HNSha256::_getHash(HNData* aData){
 	if(aData==NULL)return NULL;
-	if(aData->_isNull())return NULL;
 	
 	cocos2d::Data* data=aData->mData;
 
@@ -19,7 +18,9 @@ HNData* HNSha256::_getHash(HNData* aData){
 	
 	SHA256_CTX sha256;
 	SHA256_Init(&sha256);
-	SHA256_Update(&sha256, data->getBytes(), data->getSize());
+	if(!aData->_isEmpty()){
+		SHA256_Update(&sha256, data->getBytes(), data->getSize());
+	}
 	SHA256_Final(hash,&sha256);
 	
 	HNData* ret=new HNData();

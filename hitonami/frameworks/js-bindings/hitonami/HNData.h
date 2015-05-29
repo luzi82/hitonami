@@ -21,7 +21,7 @@ public:
 	int _getSize();
 	void _copy(HNData* aFrom);
 	void _clear();
-	bool _isNull();
+	bool _isEmpty();
 	void _setZero();
 	bool _equal(HNData* aFrom);
 	

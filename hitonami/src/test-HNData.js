@@ -1,130 +1,130 @@
 ut.addCase("pPHesjhW HNData init",function(){
 	var d = new hn.Data();
 	ut.eq("gcnuANFk",d.getSize(),0);
-	ut.t("byDcIrnZ",d.isNull());
+	ut.t("byDcIrnZ",d.isEmpty());
 });
 
 ut.addCase("XGIDVLaS HNData fromFile",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("qcMAmevc",d.getSize(),3753);
-	ut.t("iOYfKtsN",!d.isNull());
+	ut.t("iOYfKtsN",!d.isEmpty());
 });
 
 ut.addCase("buirUyEc HNData clear",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("iKWswsLU",d.getSize(),3753);
-	ut.t("zMdoexlv",!d.isNull());
+	ut.t("zMdoexlv",!d.isEmpty());
 
 	d.clear();
 	ut.eq("dJNVAmWO",d.getSize(),0);
-	ut.t("YkdfwWCe",d.isNull());
+	ut.t("YkdfwWCe",d.isEmpty());
 });
 
 ut.addCase("xKCGhCcI HNData copy",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("iKWswsLU",d.getSize(),3753);
-	ut.t("zMdoexlv",!d.isNull());
+	ut.t("zMdoexlv",!d.isEmpty());
 	
 	var d0 = new hn.Data();
 	ut.eq("lzrMEuyj",d0.getSize(),0);
-	ut.t("rhDMGGlN",d0.isNull());
+	ut.t("rhDMGGlN",d0.isEmpty());
 	
 	d0.copy(d);
 	ut.eq("EAlzhoZV",d.getSize(),3753);
-	ut.t("LwqQFnps",!d.isNull());
+	ut.t("LwqQFnps",!d.isEmpty());
 });
 
 ut.addCase("fDOqutxC HNData copy independent 0",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("iKWswsLU",d.getSize(),3753);
-	ut.t("zMdoexlv",!d.isNull());
+	ut.t("zMdoexlv",!d.isEmpty());
 	
 	var d0 = new hn.Data();
 	ut.eq("lzrMEuyj",d0.getSize(),0);
-	ut.t("rhDMGGlN",d0.isNull());
+	ut.t("rhDMGGlN",d0.isEmpty());
 	
 	d0.copy(d);
 	ut.eq("aeniNwct",d.getSize(),3753);
-	ut.t("SvRPcltt",!d.isNull());
+	ut.t("SvRPcltt",!d.isEmpty());
 	ut.eq("EAlzhoZV",d0.getSize(),3753);
-	ut.t("LwqQFnps",!d0.isNull());
+	ut.t("LwqQFnps",!d0.isEmpty());
 	
 	d.clear();
 	ut.eq("lzrMEuyj",d.getSize(),0);
-	ut.t("rhDMGGlN",d.isNull());
+	ut.t("rhDMGGlN",d.isEmpty());
 	ut.eq("EAlzhoZV",d0.getSize(),3753);
-	ut.t("LwqQFnps",!d0.isNull());
+	ut.t("LwqQFnps",!d0.isEmpty());
 });
 
 ut.addCase("sOSqLjIB HNData copy independent 1",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("iKWswsLU",d.getSize(),3753);
-	ut.t("zMdoexlv",!d.isNull());
+	ut.t("zMdoexlv",!d.isEmpty());
 	
 	var d0 = new hn.Data();
 	ut.eq("lzrMEuyj",d0.getSize(),0);
-	ut.t("rhDMGGlN",d0.isNull());
+	ut.t("rhDMGGlN",d0.isEmpty());
 	
 	d0.copy(d);
 	ut.eq("aeniNwct",d.getSize(),3753);
-	ut.t("SvRPcltt",!d.isNull());
+	ut.t("SvRPcltt",!d.isEmpty());
 	ut.eq("EAlzhoZV",d0.getSize(),3753);
-	ut.t("LwqQFnps",!d0.isNull());
+	ut.t("LwqQFnps",!d0.isEmpty());
 	
 	d0.clear();
 	ut.eq("PoHZjZsr",d.getSize(),3753);
-	ut.t("xhlIYQfv",!d.isNull());
+	ut.t("xhlIYQfv",!d.isEmpty());
 	ut.eq("uNvHtfUb",d0.getSize(),0);
-	ut.t("eOuicBzp",d0.isNull());
+	ut.t("eOuicBzp",d0.isEmpty());
 });
 
 ut.addCase("sfbkVLkK HNData assign dependent 0",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("iKWswsLU",d.getSize(),3753);
-	ut.t("zMdoexlv",!d.isNull());
+	ut.t("zMdoexlv",!d.isEmpty());
 	
 	var d0 = d;
 	ut.eq("aeniNwct",d.getSize(),3753);
-	ut.t("SvRPcltt",!d.isNull());
+	ut.t("SvRPcltt",!d.isEmpty());
 	ut.eq("EAlzhoZV",d0.getSize(),3753);
-	ut.t("LwqQFnps",!d0.isNull());
+	ut.t("LwqQFnps",!d0.isEmpty());
 	
 	d0.clear();
 	ut.eq("PoHZjZsr",d.getSize(),0);
-	ut.t("xhlIYQfv",d.isNull());
+	ut.t("xhlIYQfv",d.isEmpty());
 	ut.eq("uNvHtfUb",d0.getSize(),0);
-	ut.t("eOuicBzp",d0.isNull());
+	ut.t("eOuicBzp",d0.isEmpty());
 });
 
 ut.addCase("wUMPScEn HNData assign dependent 1",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("iKWswsLU",d.getSize(),3753);
-	ut.t("zMdoexlv",!d.isNull());
+	ut.t("zMdoexlv",!d.isEmpty());
 	
 	var d0 = d;
 	ut.eq("aeniNwct",d.getSize(),3753);
-	ut.t("SvRPcltt",!d.isNull());
+	ut.t("SvRPcltt",!d.isEmpty());
 	ut.eq("EAlzhoZV",d0.getSize(),3753);
-	ut.t("LwqQFnps",!d0.isNull());
+	ut.t("LwqQFnps",!d0.isEmpty());
 	
 	d.clear();
 	ut.eq("PoHZjZsr",d.getSize(),0);
-	ut.t("xhlIYQfv",d.isNull());
+	ut.t("xhlIYQfv",d.isEmpty());
 	ut.eq("uNvHtfUb",d0.getSize(),0);
-	ut.t("eOuicBzp",d0.isNull());
+	ut.t("eOuicBzp",d0.isEmpty());
 });
 
 ut.addCase("EbUPdjQG HNData hex",function(){
 	var d = hn.Data.fromFile("res/32B.dat");
 	ut.eq("iKWswsLU",d.getSize(),32);
-	ut.t("zMdoexlv",!d.isNull());
+	ut.t("zMdoexlv",!d.isEmpty());
 	ut.eq("XMhUEsXs",d.toHex(),"0730bf3321fa579f65cd6bb8efc43510916e8e4644f1285d5dac8b6fca682a10");
 });
 
 ut.addCase("koCYCgOv HNData base64",function(){
 	var d = hn.Data.fromFile("res/32B.dat");
 	ut.eq("pQBxPRXH",d.getSize(),32);
-	ut.t("JmMftJWB",!d.isNull());
+	ut.t("JmMftJWB",!d.isEmpty());
 	ut.eq("AGNzPsKc",d.toBase64(),"BzC/MyH6V59lzWu478Q1EJFujkZE8ShdXayLb8poKhA=");
 });
 
@@ -222,4 +222,9 @@ ut.addCase("BjPyLrwy HNData equal",function(){
 	ut.t("bfiegkaV",!hn.Data.fromHex("deadbeef").equal(null)); // TODO, should able to handle null
 	ut.t("DLbTxiwg",!hn.Data.fromHex("deadbeef").equal(hn.Data.fromHex("")));
 	ut.t("BpBtTyRl",!hn.Data.fromHex("deadbeef").equal(hn.Data.fromHex("deadbe")));
+});
+
+ut.addCase("gNZwhvGo HNData empty null",function(){
+	ut.t("yGOvZTDa",hn.Data.fromHex("")!=null);
+	ut.t("HyJoSmxp",hn.Data.fromHex("").isEmpty());
 });
