@@ -3,6 +3,7 @@
 
 #include "HNData.h"
 #include "HNSha256.h"
+#include "HNRsa.h"
 
 // __hn_h__
 #endif

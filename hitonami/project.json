@@ -12,6 +12,7 @@
 
     "jsList" : [
         "src/hitonami/HNData.js",
+        "src/hitonami/HNRsa.js",
         "src/hitonami/HNSha256.js",
         "src/case-bLRWLcbT.js",
         "src/unittest.js",
