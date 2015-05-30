@@ -9,6 +9,7 @@ LOCAL_MODULE_FILENAME := libcocos2djs
 LOCAL_SRC_FILES := hellojavascript/main.cpp \
                    ../../Classes/AppDelegate.cpp \
                    ../../../custom/auto/jsb_cocos2dx_hitonami.cpp \
+                   ../../../js-bindings/hitonami/HNCipher.cpp \
                    ../../../js-bindings/hitonami/HNData.cpp \
                    ../../../js-bindings/hitonami/HNRsa.cpp \
                    ../../../js-bindings/hitonami/HNSha256.cpp \
