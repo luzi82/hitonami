@@ -28,14 +28,16 @@ ut.addCase("iWyptIrP hn.Signature null",function(){
 	var empty = new hn.Data();
 	
 	ut.t("iYuIUHCS",!hn.Signature.verify(hn.Signature.RSA,null,sha256,sign,publicKey));
-	ut.t("JAAjJBdj",!hn.Signature.verify(hn.Signature.RSA,hn.Checksum.SHA256,null,sign,publicKey));
-	ut.t("UpXZosty",!hn.Signature.verify(hn.Signature.RSA,hn.Checksum.SHA256,sha256,null,publicKey));
-	ut.t("LrMUkuHv",!hn.Signature.verify(hn.Signature.RSA,hn.Checksum.SHA256,sha256,sign,null));
-
 	ut.t("VitjrccC",!hn.Signature.verify(hn.Signature.RSA,"",sha256,sign,publicKey));
+	ut.t("vKDkebBN",!hn.Signature.verify(hn.Signature.RSA,"XXX",sha256,sign,publicKey));
+
+	ut.t("JAAjJBdj",!hn.Signature.verify(hn.Signature.RSA,hn.Checksum.SHA256,null,sign,publicKey));
 	ut.t("SKoARAkC",!hn.Signature.verify(hn.Signature.RSA,hn.Checksum.SHA256,empty,sign,publicKey));
+
+	ut.t("UpXZosty",!hn.Signature.verify(hn.Signature.RSA,hn.Checksum.SHA256,sha256,null,publicKey));
 	ut.t("DGIhyFEx",!hn.Signature.verify(hn.Signature.RSA,hn.Checksum.SHA256,sha256,empty,publicKey));
+	
+	ut.t("LrMUkuHv",!hn.Signature.verify(hn.Signature.RSA,hn.Checksum.SHA256,sha256,sign,null));
 	ut.t("huWVpHUW",!hn.Signature.verify(hn.Signature.RSA,hn.Checksum.SHA256,sha256,sign,empty));
 
-	ut.t("vKDkebBN",!hn.Signature.verify(hn.Signature.RSA,"XXX",sha256,sign,publicKey));
 });
