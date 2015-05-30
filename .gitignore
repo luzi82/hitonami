@@ -2,6 +2,15 @@
 /3rd-party/
 /hitonami/frameworks/custom/
 /hitonami/frameworks/js-bindings/bindings/auto/api/
+/hitonami/frameworks/js-bindings/cocos2d-x/cocos/platform/android/java/bin/
+/hitonami/frameworks/js-bindings/cocos2d-x/cocos/platform/android/java/gen/
+/hitonami/frameworks/js-bindings/cocos2d-x/cocos/platform/android/java/local.properties
+/hitonami/frameworks/runtime-src/proj.android/assets/
+/hitonami/frameworks/runtime-src/proj.android/bin/
+/hitonami/frameworks/runtime-src/proj.android/gen/
+/hitonami/frameworks/runtime-src/proj.android/libs/
+/hitonami/frameworks/runtime-src/proj.android/local.properties
+/hitonami/frameworks/runtime-src/proj.android/obj/
 /hitonami/linux-build/
 /hitonami/runtime/
 /hitonami/tools/bindings-generator/clang/__init__.pyc

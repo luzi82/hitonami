@@ -134,6 +134,14 @@ ut.addCase("jGWVUiMR HNData",function(){
 	ut.eq("PIpMKUHc",bin0.toHex(),"9479e176e687002b4c081973");
 });
 
+ut.addCase("QiHrXOBs HNData android bug",function(){
+	// In linux-x86, "char" is signed
+	// In Anroid-32bit, "char" is unsigned
+	// That sign bug will make rtbMQnEs LHS become 3
+	var bin1=hn.Data.fromBase64("AA==");
+	ut.eq("rtbMQnEs",bin1.getSize(),1);
+});
+
 ut.addCase("bLRWLcbT HNData",function(){
 	var u;
 	for(u in case_bLRWLcbT){
