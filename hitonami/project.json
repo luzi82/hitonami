@@ -11,6 +11,7 @@
     "modules" : ["cocos2d"],
 
     "jsList" : [
+        "src/hitonami/HNCipher.js",
         "src/hitonami/HNData.js",
         "src/hitonami/HNRsa.js",
         "src/hitonami/HNSha256.js",

@@ -270,6 +270,7 @@ include_directories(
 set(GAME_SRC
   frameworks/runtime-src/proj.linux/main.cpp
   frameworks/runtime-src/Classes/AppDelegate.cpp
+  frameworks/js-bindings/hitonami/HNCipher.cpp
   frameworks/js-bindings/hitonami/HNData.cpp
   frameworks/js-bindings/hitonami/HNRsa.cpp
   frameworks/js-bindings/hitonami/HNSha256.cpp
