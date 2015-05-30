@@ -11,16 +11,16 @@
     "modules" : ["cocos2d"],
 
     "jsList" : [
+        "src/hitonami/HNChecksum.js",
         "src/hitonami/HNCipher.js",
         "src/hitonami/HNData.js",
-        "src/hitonami/HNRsa.js",
-        "src/hitonami/HNSha256.js",
+        "src/hitonami/HNSignature.js",
         "src/case-bLRWLcbT.js",
         "src/unittest.js",
-        "src/test-HNData.js",
+        "src/test-hn.Data.js",
         "src/test-hn.Checksum.js",
-        "src/test-HNRsa.js",
-        "src/test-HNCipher.js",
+        "src/test-hn.Signature.js",
+        "src/test-hn.Cipher.js",
         "src/resource.js",
         "src/app.js"
     ]

@@ -9,5 +9,5 @@ hn.Cipher.decrypt = function(method,enc,key,iv){
 	if(enc==null)return null;
 	if(key==null)return null;
 	if(iv==null)return null;
-	return hn.Data._fromHNData( __hn.HNCipher._decrypt(method,enc.__hndata,key.__hndata,iv.__hndata) );
+	return hn.Data._fromHNData( __hn.HNOpenssl._decrypt(method,enc.__hndata,key.__hndata,iv.__hndata) );
 }

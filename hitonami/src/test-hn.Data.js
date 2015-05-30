@@ -1,16 +1,16 @@
-ut.addCase("pPHesjhW HNData init",function(){
+ut.addCase("pPHesjhW hn.Data init",function(){
 	var d = new hn.Data();
 	ut.eq("gcnuANFk",d.getSize(),0);
 	ut.t("byDcIrnZ",d.isEmpty());
 });
 
-ut.addCase("XGIDVLaS HNData fromFile",function(){
+ut.addCase("XGIDVLaS hn.Data fromFile",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("qcMAmevc",d.getSize(),3753);
 	ut.t("iOYfKtsN",!d.isEmpty());
 });
 
-ut.addCase("buirUyEc HNData clear",function(){
+ut.addCase("buirUyEc hn.Data clear",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("iKWswsLU",d.getSize(),3753);
 	ut.t("zMdoexlv",!d.isEmpty());
@@ -20,7 +20,7 @@ ut.addCase("buirUyEc HNData clear",function(){
 	ut.t("YkdfwWCe",d.isEmpty());
 });
 
-ut.addCase("xKCGhCcI HNData copy",function(){
+ut.addCase("xKCGhCcI hn.Data copy",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("iKWswsLU",d.getSize(),3753);
 	ut.t("zMdoexlv",!d.isEmpty());
@@ -34,7 +34,7 @@ ut.addCase("xKCGhCcI HNData copy",function(){
 	ut.t("LwqQFnps",!d.isEmpty());
 });
 
-ut.addCase("fDOqutxC HNData copy independent 0",function(){
+ut.addCase("fDOqutxC hn.Data copy independent 0",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("iKWswsLU",d.getSize(),3753);
 	ut.t("zMdoexlv",!d.isEmpty());
@@ -56,7 +56,7 @@ ut.addCase("fDOqutxC HNData copy independent 0",function(){
 	ut.t("LwqQFnps",!d0.isEmpty());
 });
 
-ut.addCase("sOSqLjIB HNData copy independent 1",function(){
+ut.addCase("sOSqLjIB hn.Data copy independent 1",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("iKWswsLU",d.getSize(),3753);
 	ut.t("zMdoexlv",!d.isEmpty());
@@ -78,7 +78,7 @@ ut.addCase("sOSqLjIB HNData copy independent 1",function(){
 	ut.t("eOuicBzp",d0.isEmpty());
 });
 
-ut.addCase("sfbkVLkK HNData assign dependent 0",function(){
+ut.addCase("sfbkVLkK hn.Data assign dependent 0",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("iKWswsLU",d.getSize(),3753);
 	ut.t("zMdoexlv",!d.isEmpty());
@@ -96,7 +96,7 @@ ut.addCase("sfbkVLkK HNData assign dependent 0",function(){
 	ut.t("eOuicBzp",d0.isEmpty());
 });
 
-ut.addCase("wUMPScEn HNData assign dependent 1",function(){
+ut.addCase("wUMPScEn hn.Data assign dependent 1",function(){
 	var d = hn.Data.fromFile("res/square.png");
 	ut.eq("iKWswsLU",d.getSize(),3753);
 	ut.t("zMdoexlv",!d.isEmpty());
@@ -114,27 +114,27 @@ ut.addCase("wUMPScEn HNData assign dependent 1",function(){
 	ut.t("eOuicBzp",d0.isEmpty());
 });
 
-ut.addCase("EbUPdjQG HNData hex",function(){
+ut.addCase("EbUPdjQG hn.Data hex",function(){
 	var d = hn.Data.fromFile("res/32B.dat");
 	ut.eq("iKWswsLU",d.getSize(),32);
 	ut.t("zMdoexlv",!d.isEmpty());
 	ut.eq("XMhUEsXs",d.toHex(),"0730bf3321fa579f65cd6bb8efc43510916e8e4644f1285d5dac8b6fca682a10");
 });
 
-ut.addCase("koCYCgOv HNData base64",function(){
+ut.addCase("koCYCgOv hn.Data base64",function(){
 	var d = hn.Data.fromFile("res/32B.dat");
 	ut.eq("pQBxPRXH",d.getSize(),32);
 	ut.t("JmMftJWB",!d.isEmpty());
 	ut.eq("AGNzPsKc",d.toBase64(),"BzC/MyH6V59lzWu478Q1EJFujkZE8ShdXayLb8poKhA=");
 });
 
-ut.addCase("jGWVUiMR HNData",function(){
+ut.addCase("jGWVUiMR hn.Data",function(){
 	var bin0=hn.Data.fromHex("9479e176e687002b4c081973");
 	ut.eq("PLHNviwy",bin0.getSize(),12);
 	ut.eq("PIpMKUHc",bin0.toHex(),"9479e176e687002b4c081973");
 });
 
-ut.addCase("QiHrXOBs HNData android bug",function(){
+ut.addCase("QiHrXOBs hn.Data android bug",function(){
 	// In linux-x86, "char" is signed
 	// In Anroid-32bit, "char" is unsigned
 	// That sign bug will make rtbMQnEs LHS become 3
@@ -142,7 +142,7 @@ ut.addCase("QiHrXOBs HNData android bug",function(){
 	ut.eq("rtbMQnEs",bin1.getSize(),1);
 });
 
-ut.addCase("bLRWLcbT HNData",function(){
+ut.addCase("bLRWLcbT hn.Data",function(){
 	var u;
 	for(u in case_bLRWLcbT){
 		var c=case_bLRWLcbT[u];
@@ -164,7 +164,7 @@ ut.addCase("bLRWLcbT HNData",function(){
 	}
 });
 
-ut.addCase("ywXnSJRQ HNData hex fail",function(){
+ut.addCase("ywXnSJRQ hn.Data hex fail",function(){
 	ut.eq("crIgPaqn",hn.Data.fromHex("!@"),null);
 	ut.eq("vkGZzavO",hn.Data.fromHex("0"),null);
 	ut.eq("FkZxtOQD",hn.Data.fromHex("a"),null);
@@ -179,7 +179,7 @@ ut.addCase("ywXnSJRQ HNData hex fail",function(){
 	ut.eq("eNEVmDGP",hn.Data.fromHex("Z0"),null);
 });
 
-ut.addCase("fIALLKnM HNData base64 fail",function(){
+ut.addCase("fIALLKnM hn.Data base64 fail",function(){
 	ut.eq("qHJgbQJq",hn.Data.fromBase64("a"),null);
 	ut.eq("RGtQjigB",hn.Data.fromBase64("aa"),null);
 	ut.eq("oRMEjVWi",hn.Data.fromBase64("aaa"),null);
@@ -208,7 +208,7 @@ ut.addCase("fIALLKnM HNData base64 fail",function(){
 	ut.eq("qmFcKxQS",hn.Data.fromBase64("!@#$"),null);
 });
 
-ut.addCase("BjPyLrwy HNData upper",function(){
+ut.addCase("BjPyLrwy hn.Data upper",function(){
 	var u;
 	for(u in case_bLRWLcbT){
 		var c=case_bLRWLcbT[u];
@@ -224,7 +224,7 @@ ut.addCase("BjPyLrwy HNData upper",function(){
 	}
 });
 
-ut.addCase("BjPyLrwy HNData equal",function(){
+ut.addCase("BjPyLrwy hn.Data equal",function(){
 	ut.t("vMZgzVph",hn.Data.fromHex("deadbeef").equal(hn.Data.fromHex("deadbeef")));
 	ut.t("DnVkgJkO",!hn.Data.fromHex("deadbeef").equal(hn.Data.fromHex("deadbeee")));
 	ut.t("bfiegkaV",!hn.Data.fromHex("deadbeef").equal(null)); // TODO, should able to handle null
@@ -232,7 +232,7 @@ ut.addCase("BjPyLrwy HNData equal",function(){
 	ut.t("BpBtTyRl",!hn.Data.fromHex("deadbeef").equal(hn.Data.fromHex("deadbe")));
 });
 
-ut.addCase("gNZwhvGo HNData empty null",function(){
+ut.addCase("gNZwhvGo hn.Data empty null",function(){
 	ut.t("yGOvZTDa",hn.Data.fromHex("")!=null);
 	ut.t("HyJoSmxp",hn.Data.fromHex("").isEmpty());
 });

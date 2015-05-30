@@ -1,13 +1,13 @@
-ut.addCase("PeFjoPAD HNCipher",function(){
+ut.addCase("PeFjoPAD hn.Cipher",function(){
 	var enc = hn.Data.fromFile("res/square.png.enc");
 	var key = hn.Data.fromHex("0123456789abcdef0123456789abcdef");
 	var iv  = hn.Data.fromHex("fedcba9876543210fedcba9876543210");
 
 	var data = hn.Cipher.decrypt(hn.Cipher.AES128CBC,enc,key,iv);
-	ut.eq("GGNLltvc",hn.Sha256.getHash(data).toHex(),"98c8abc1c2d429660bd4d6fe12706fa0c3e4f70f68580ad1fc006f35888b9c38");
+	ut.eq("GGNLltvc",hn.Checksum.get(hn.Checksum.SHA256,data).toHex(),"98c8abc1c2d429660bd4d6fe12706fa0c3e4f70f68580ad1fc006f35888b9c38");
 });
 
-ut.addCase("pFOLLsbu HNCipher invalid input",function(){
+ut.addCase("pFOLLsbu hn.Cipher invalid input",function(){
 	var enc   = hn.Data.fromFile("res/square.png.enc");
 	var key   = hn.Data.fromHex("0123456789abcdef0123456789abcdef");
 	var keyX0 = hn.Data.fromHex("0123456789abcdef0123456789abcd");
