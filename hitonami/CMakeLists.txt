@@ -258,7 +258,7 @@ add_subdirectory(frameworks/js-bindings/cocos2d-x/external/xxhash)
 include_directories(frameworks/js-bindings/cocos2d-x/external/xxhash)
 
 # hitonami:
-add_definitions(-DPEDANTIC)
+#add_definitions(-DPEDANTIC)
 
 # hitonami: cpp/h in src
 include_directories(
