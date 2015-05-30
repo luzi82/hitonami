@@ -18,7 +18,7 @@ ut.addCase("KOFaoRdc hn.Signature fail",function(){
 	ut.t("iYuIUHCS",!hn.Signature.verify(hn.Signature.RSA,hn.Checksum.SHA256,sha256,sign,publicKey));
 });
 
-ut.addCase("iWyptIrP hn.Signature null",function(){
+ut.addCase("iWyptIrP hn.Signature invalid arg",function(){
 	var data = hn.Data.fromFile("res/square.png");
 	var publicKey = hn.Data.fromFile("res/public.pem");
 	var sign = hn.Data.fromFile("res/square.png.sig");
