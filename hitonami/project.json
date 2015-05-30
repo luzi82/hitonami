@@ -18,7 +18,7 @@
         "src/case-bLRWLcbT.js",
         "src/unittest.js",
         "src/test-HNData.js",
-        "src/test-HNSha256.js",
+        "src/test-hn.Checksum.js",
         "src/test-HNRsa.js",
         "src/test-HNCipher.js",
         "src/resource.js",
