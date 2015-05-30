@@ -19,6 +19,7 @@
         "src/test-HNData.js",
         "src/test-HNSha256.js",
         "src/test-HNRsa.js",
+        "src/test-HNCipher.js",
         "src/resource.js",
         "src/app.js"
     ]
