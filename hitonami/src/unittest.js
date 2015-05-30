@@ -25,6 +25,7 @@ ut.addCase=function(t,f){
 	});
 }
 
+/*
 ut.run=function(){
 	var i;
 	var allGood=true;
@@ -53,4 +54,95 @@ ut.run=function(){
 	if(allGood){
 		cc.log("ALL TEST PASS");
 	}
+}
+*/
+
+ut.testDone = 0;
+ut.good=false;
+ut.active=false;
+ut.activeCase=null;
+ut.caseLock=[];
+
+ut.start=function(){
+	ut.testDone = 0;
+	ut.good=true;
+	ut.active = true;
+	ut.activeCase=null;
+	ut.caseLock=[];
+	
+	ut.timer(ut.tick);
+}
+
+ut.tick=function(){
+	if(!ut.active){
+		return;
+	}
+	if(ut.activeCase==null){
+		if(ut.testDone>=ut.caseList.length){
+			ut.active=false;
+			cc.log("ALL TEST PASS");
+			return;
+		}
+		ut.activeCase = ut.caseList[ut.testDone];
+		cc.log("TEST START: "+ut.activeCase["title"]);
+		ut.next(ut.activeCase.func);
+		return;
+	}
+	if(!ut.good){
+		cc.log("TEST FAIL: "+ut.activeCase["title"]);
+		ut.activeCase=null;
+		ut.active=false;
+		return;
+	}
+	if(ut.caseLock.length==0){
+		cc.log("TEST PASS: "+ut.activeCase["title"]);
+		cc.log("===");
+		ut.activeCase=null;
+		++ut.testDone;
+		ut.timer(ut.tick);
+		return;
+	}
+	ut.good=false;
+	cc.log("!!! UNKNOWN TICK !!!: "+ut.activeCase["title"]);
+	ut.timer(ut.tick);
+}
+
+ut.caseLock=function(s){
+	ut.caseLock.push(s);
+}
+
+ut.caseUnlock=function(s){
+	var idx=ut.caseLock.indexOf(s);
+	if(idx<0){
+		ut.good=false;
+		cc.log("LOCK NOT FOUND: "+s);
+		ut.timer(ut.tick);
+		return;
+	}
+	ut.caseLock.splice(idx,1);
+}
+
+ut.next=function(f){
+	var ff=function(){
+		try{
+			f();
+		}catch(e){
+			ut.good = false;
+			cc.log(e);
+			ut.timer(ut.tick);
+			return;
+		}
+		if(ut.caseLock.length==0){
+			ut.timer(ut.tick);
+		}
+	};
+	ut.timer(ff);
+}
+
+ut.timer=function(f){
+	var ff=function(){
+		f();
+		cc.Director.getInstance().getScheduler().unscheduleCallbackForTarget(ut, ff);
+	};
+	cc.Director.getInstance().getScheduler().scheduleCallbackForTarget(ut, ff, 0, 0, 0, false);
 }

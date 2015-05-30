@@ -2,7 +2,8 @@
 var HelloWorldLayer = cc.Layer.extend({
     ctor:function () {
         this._super();
-        ut.run();
+        //ut.run();
+        ut.start();
         return true;
     }
 });
