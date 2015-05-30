@@ -61,14 +61,14 @@ ut.testDone = 0;
 ut.good=false;
 ut.active=false;
 ut.activeCase=null;
-ut.caseLock=[];
+ut.caseLockAry=[];
 
 ut.start=function(){
 	ut.testDone = 0;
 	ut.good=true;
 	ut.active = true;
 	ut.activeCase=null;
-	ut.caseLock=[];
+	ut.caseLockAry=[];
 	
 	ut.timer(ut.tick);
 }
@@ -94,7 +94,7 @@ ut.tick=function(){
 		ut.active=false;
 		return;
 	}
-	if(ut.caseLock.length==0){
+	if(ut.caseLockAry.length==0){
 		cc.log("TEST PASS: "+ut.activeCase["title"]);
 		cc.log("===");
 		ut.activeCase=null;
@@ -108,18 +108,18 @@ ut.tick=function(){
 }
 
 ut.caseLock=function(s){
-	ut.caseLock.push(s);
+	ut.caseLockAry.push(s);
 }
 
 ut.caseUnlock=function(s){
-	var idx=ut.caseLock.indexOf(s);
+	var idx=ut.caseLockAry.indexOf(s);
 	if(idx<0){
 		ut.good=false;
 		cc.log("LOCK NOT FOUND: "+s);
 		ut.timer(ut.tick);
 		return;
 	}
-	ut.caseLock.splice(idx,1);
+	ut.caseLockAry.splice(idx,1);
 }
 
 ut.next=function(f){
@@ -132,7 +132,7 @@ ut.next=function(f){
 			ut.timer(ut.tick);
 			return;
 		}
-		if(ut.caseLock.length==0){
+		if(ut.caseLockAry.length==0){
 			ut.timer(ut.tick);
 		}
 	};
