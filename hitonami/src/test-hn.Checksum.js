@@ -15,3 +15,13 @@ ut.addCase("MEGRKJPK hn.Checksum null/empty",function(){
 	ut.t("TvuczFIn",hn.Checksum.getChecksum(hn.Checksum.SHA256,hn.Data.fromHex(""))!=null);
 	ut.eq("vNvonujO",hn.Checksum.getChecksum(hn.Checksum.SHA256,hn.Data.fromHex("")).toHex(),"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
 });
+
+ut.addCase("YWWKxnIq hn.Checksum invalid input",function(){
+	var d = hn.Data.fromFile("res/square.png");
+
+	ut.eq("YyxtAohN",hn.Checksum.getChecksum(null,d),null);
+	ut.eq("BiWmZLzp",hn.Checksum.getChecksum("",d),null);
+	ut.eq("RDsNgWlf",hn.Checksum.getChecksum("XXX",d),null);
+
+	ut.eq("YifqfPrg",hn.Checksum.getChecksum(hn.Checksum.SHA256,null),null);
+});
