@@ -22,7 +22,9 @@ public:
 public:
 	bool _open();
 	void _close();
+	HNData* _read(ssize_t len);
 	HNData* _readAll();
+	ssize_t _skip(ssize_t len);
 	
 	CREATE_FUNC(HNStream);
 

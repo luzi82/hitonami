@@ -10,8 +10,16 @@ function __HNStream() {
 		this.__hnstream._close();
 	}
 	
+	this.read = function(n){
+		return hn.Data._fromHNData( this.__hnstream._read(n) );
+	}
+	
 	this.readAll = function(){
 		return hn.Data._fromHNData( this.__hnstream._readAll() );
+	}
+	
+	this.skip = function(n){
+		return this.__hnstream._skip(n);
 	}
 	
 	this.__hnstream = null;

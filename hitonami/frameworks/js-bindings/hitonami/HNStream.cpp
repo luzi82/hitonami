@@ -17,10 +17,29 @@ bool HNStream::_open(){
 	if(mInputStream==NULL)return false;
 	return mInputStream->open();
 }
+
 void HNStream::_close(){
 	if(mInputStream==NULL)return;
 	mInputStream->close();
 }
+
+HNData* HNStream::_read(ssize_t len){
+	if(mInputStream==NULL)return NULL;
+	
+	unsigned char* buf=new unsigned char[len];
+	int retLen=mInputStream->read(buf,len);
+	if(retLen<=0){
+		delete [] buf;buf=NULL;
+		return NULL;
+	}
+	
+	HNData* ret=new HNData();
+	ret->mData=new cocos2d::Data();
+	ret->mData->fastSet(buf,retLen);
+
+	return ret;
+}
+
 HNData* HNStream::_readAll(){
 	//CCLOG("fworwoTP _readAll");
 	
@@ -39,7 +58,7 @@ HNData* HNStream::_readAll(){
 		dataList.push_back(data);
 		len+=bufLen;
 	}
-	delete buf;buf=NULL;
+	delete [] buf;buf=NULL;
 
 	//CCLOG("wcVcaUNZ len %d",len);
 	
@@ -63,6 +82,12 @@ HNData* HNStream::_readAll(){
 	ret->mData->fastSet(buf,len);
 	
 	return ret;
+}
+
+ssize_t HNStream::_skip(ssize_t len){
+	if(mInputStream==NULL)return -1;
+	
+	return mInputStream->skip(len);
 }
 
 HNStream* HNStream::_fromFile(const std::string& aFilename){
