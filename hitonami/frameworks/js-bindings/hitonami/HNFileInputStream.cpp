@@ -6,7 +6,10 @@ HNFileInputStream::HNFileInputStream(const std::string& aFilename):
 mFilename(aFilename),
 mFile(NULL)
 {}
-HNFileInputStream::~HNFileInputStream(){}
+HNFileInputStream::~HNFileInputStream()
+{
+	close();
+}
 
 bool HNFileInputStream::open()
 {

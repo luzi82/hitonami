@@ -7,7 +7,10 @@
 namespace hn{
 
 HNStream::HNStream():mInputStream(NULL){}
-HNStream::~HNStream(){}
+HNStream::~HNStream(){
+	delete mInputStream;
+	mInputStream = NULL;
+}
 bool HNStream::init(){return true;}
 
 bool HNStream::_open(){
