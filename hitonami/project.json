@@ -19,6 +19,7 @@
         "src/unittest.js",
         "src/test-hn.Data.js",
         "src/test-hn.Checksum.js",
+        "src/test-hn.Stream.js",
         "src/test-hn.Signature.js",
         "src/test-hn.Cipher.js",
         "src/resource.js",
