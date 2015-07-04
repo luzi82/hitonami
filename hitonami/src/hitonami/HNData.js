@@ -69,8 +69,12 @@ function __HNData() {
 		return this.__hndata._toHex();
 	};
 
-	this.__hndata = new __hn.HNData();
+	this.mid = function(offset,len) {
+		return hn.Data._fromHNData(this.__hndata._mid(offset,len));
+	};
 
+	this.__hndata = new __hn.HNData();
+	
 };
 
 hn.Data = __HNData;

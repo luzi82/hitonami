@@ -236,3 +236,11 @@ ut.addCase("gNZwhvGo hn.Data empty null",function(){
 	ut.t("yGOvZTDa",hn.Data.fromHex("")!=null);
 	ut.t("HyJoSmxp",hn.Data.fromHex("").isEmpty());
 });
+
+ut.addCase("HOptykHB hn.Data mid",function(){
+	var d = hn.Data.fromFile("res/32B.dat");
+	d = d.mid(10,20);
+	ut.eq("QSJZMiSI",d.getSize(),20);
+	ut.t("ISrmHDmP",!d.isEmpty());
+	ut.eq("YxGxpllw",d.toHex(),"6bb8efc43510916e8e4644f1285d5dac8b6fca68");
+});

@@ -72,6 +72,21 @@ bool HNData::_equal(HNData* aFrom){
 	return true; 
 }
 
+HNData* HNData::_mid(int offset,int len){
+	if(_isEmpty())return NULL;
+	if(len>_getSize()-offset){
+		len=_getSize()-offset;
+	}
+	unsigned char* buf=new unsigned char[len];
+	memcpy(buf,mData->getBytes()+offset,len);
+	
+	HNData* ret=new HNData();
+	ret->mData=new cocos2d::Data();
+	ret->mData->fastSet(buf,len);
+
+	return ret;	
+}
+
 HNData* HNData::_fromFile(const std::string& aFilename){
 	cocos2d::Data d=cocos2d::FileUtils::getInstance()->getDataFromFile(aFilename);
 	HNData* ret=new HNData();

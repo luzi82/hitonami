@@ -24,6 +24,7 @@ public:
 	bool _isEmpty();
 	void _setZero();
 	bool _equal(HNData* aFrom);
+	HNData* _mid(int offset,int len);
 	
 	std::string _toHex();
 	std::string _toBase64();
