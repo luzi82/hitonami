@@ -15,6 +15,7 @@
         "src/hitonami/HNCipher.js",
         "src/hitonami/HNData.js",
         "src/hitonami/HNSignature.js",
+        "src/hitonami/HNStream.js",
         "src/case-bLRWLcbT.js",
         "src/unittest.js",
         "src/test-hn.Data.js",

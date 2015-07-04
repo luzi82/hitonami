@@ -3,6 +3,7 @@
 
 #include "HNData.h"
 #include "HNOpenssl.h"
+#include "HNStream.h"
 
 // __hn_h__
 #endif
