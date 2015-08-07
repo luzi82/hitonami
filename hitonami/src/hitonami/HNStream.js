@@ -32,6 +32,10 @@ hn.Stream.fromFile = function(str){
 	return hn.Stream._fromHNStream( __hn.HNStream._fromFile(str) );
 }
 
+hn.Stream.crypto = function(stream,method,key,iv){
+	return hn.Stream._fromHNStream( __hn.HNStream._crypto(stream.__hnstream,method,key.__hndata,iv.__hndata) );
+}
+
 hn.Stream._fromHNStream = function(hnstream){
 	if (hnstream == null)
 		return null;
@@ -39,3 +43,5 @@ hn.Stream._fromHNStream = function(hnstream){
 	ret.__hnstream = hnstream;
 	return ret;
 }
+
+hn.Stream.CRYPTO_TYPE_AES128CBC_DEC = "AES128CBC_DEC";

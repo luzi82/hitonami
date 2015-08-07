@@ -1,8 +1,10 @@
 #include "HNStream.h"
 
+#include "HN.h"
 #include "HNData.h"
 #include "HNFileInputStream.h"
 #include "HNInputStream.h"
+#include "HNCryptoAes128CbcDecInputStream.h"
 
 namespace hn{
 
@@ -94,6 +96,29 @@ HNStream* HNStream::_fromFile(const std::string& aFilename){
 	HNStream* ret = new HNStream();
 	ret->mInputStream = new HNFileInputStream(aFilename);
 	return ret;
+}
+
+HNStream* HNStream::_crypto(
+	HNStream* aStream,
+	const std::string& aMethod,
+	HNData* aKey,
+	HNData* aIv
+){
+	if(aMethod==HN_STREAM_CRYPTO_TYPE_AES128CBC_DEC)
+	{
+		HNCryptoAes128CbcDecInputStream* decInputStream = new HNCryptoAes128CbcDecInputStream();
+		decInputStream->setInputStream(aStream->mInputStream);
+		decInputStream->setKey(*(aKey->mData));
+		decInputStream->setIv(*(aIv->mData));
+		
+		HNStream* ret = new HNStream();
+		ret->mInputStream = decInputStream;
+		
+		aStream->mInputStream = NULL;
+		
+		return ret;
+	}
+	return NULL;
 }
 
 }

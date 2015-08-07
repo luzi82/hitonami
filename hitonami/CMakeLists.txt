@@ -270,9 +270,11 @@ include_directories(
 set(GAME_SRC
   frameworks/runtime-src/proj.linux/main.cpp
   frameworks/runtime-src/Classes/AppDelegate.cpp
+  frameworks/js-bindings/hitonami/HNCryptoAes128CbcDecInputStream.cpp
   frameworks/js-bindings/hitonami/HNData.cpp
   frameworks/js-bindings/hitonami/HNFileInputStream.cpp
   frameworks/js-bindings/hitonami/HNInputStream.cpp
+  frameworks/js-bindings/hitonami/HNInputStreamBio.cpp
   frameworks/js-bindings/hitonami/HNOpenssl.cpp
   frameworks/js-bindings/hitonami/HNStream.cpp
   frameworks/custom/auto/jsb_cocos2dx_hitonami.cpp

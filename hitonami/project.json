@@ -23,6 +23,7 @@
         "src/test-hn.Stream.js",
         "src/test-hn.Signature.js",
         "src/test-hn.Cipher.js",
+        "src/test-hn.CryptoStream.js",
         "src/resource.js",
         "src/app.js"
     ]

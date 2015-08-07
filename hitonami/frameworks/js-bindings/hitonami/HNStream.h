@@ -30,6 +30,12 @@ public:
 
 public:
 	static HNStream* _fromFile(const std::string& aFilename);
+	static HNStream* _crypto(
+		HNStream* aStream,
+		const std::string& aType,
+		HNData* aKey,
+		HNData* aIv
+	);
 
 public:
 	HNInputStream* mInputStream;
