@@ -67,6 +67,8 @@ ssize_t HNCryptoAes128CbcDecInputStream::read(unsigned char* buf,ssize_t n)
 }
 ssize_t HNCryptoAes128CbcDecInputStream::skip(ssize_t n)
 {
+	if(n==0)return 0;
+
 	int result;
 
 	if(n<=BIO_pending(mCipherBio)){
@@ -91,13 +93,24 @@ ssize_t HNCryptoAes128CbcDecInputStream::skip(ssize_t n)
 
 	if(skipLen1>=16){
 		result=BIO_seek(mCipherBio,skipLen1-16);
-		if(result<0)return -1;
+		if(result<0){
+			CCLOG("!!! NJvqhfwO !!!");
+			return -1;
+		}
 		result=BIO_read(mCipherBio,tmpBuf0,16);
-		if(result!=16)return -1;
+		if(result!=16){
+			CCLOG("!!! HWcWxbBD !!!");
+			return -1;
+		}
 	}
 	
-	result=BIO_read(mCipherBio,tmpBuf0,skipLen0);
-	if(result!=skipLen0)return -1;
+	if(skipLen0>0){
+		result=BIO_read(mCipherBio,tmpBuf0,skipLen0);
+		if(result!=skipLen0){
+			CCLOG("!!! xJuJLGFx !!! result=%d, skipLen0=%ld",result,skipLen0);
+			return -1;
+		}
+	}
 	
 	mOffset=skipLen;
 	
