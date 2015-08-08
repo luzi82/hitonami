@@ -108,7 +108,7 @@ ssize_t HNCryptoAes128CbcDecInputStream::skip(ssize_t n)
 	if(skipLen0>0){
 		result=BIO_read(mCipherBio,tmpBuf0,skipLen0);
 		if(result!=skipLen0){
-			CCLOG("!!! xJuJLGFx !!! result=%d, skipLen0=%ld",result,skipLen0);
+			CCLOG("!!! xJuJLGFx !!! result=%d, skipLen0=%d",result,(int)skipLen0);
 			return -1;
 		}
 	}

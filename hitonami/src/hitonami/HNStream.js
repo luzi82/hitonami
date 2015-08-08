@@ -35,6 +35,18 @@ hn.Stream.fromFile = function(str){
 	return hn.Stream._fromHNRefStream( __hn.HNRefStream._fromFile(str) );
 }
 
+hn.Stream.fromAndroidAsset = function(str,mode){
+	return hn.Stream._fromHNRefStream( __hn.HNRefStream._fromAndroidAssetFile(str,mode) );
+}
+
+hn.Stream.fromRes = function(str){
+	if(sys.os==sys.OS_ANDROID){
+		return hn.Stream.fromAndroidAsset(str,0);
+	}else{
+		return hn.Stream.fromFile(str);
+	}
+}
+
 hn.Stream.crypto = function(stream,method,key,iv){
 	return hn.Stream._fromHNRefStream( __hn.HNRefStream._crypto(stream.__hnstream,method,key.__hndata,iv.__hndata) );
 }

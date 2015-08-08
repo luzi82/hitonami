@@ -1,5 +1,5 @@
 ut.addCase("YFAMcPgl hn.CryptoStream file",function(){
-	var fileStream = hn.Stream.fromFile("res/square.png.enc");
+	var fileStream = hn.Stream.fromRes("res/square.png.enc");
 	ut.t("IepvrYdT", fileStream!=null);
 
 	var key = hn.Data.fromHex("0123456789abcdef0123456789abcdef");
@@ -17,7 +17,7 @@ ut.addCase("YFAMcPgl hn.CryptoStream file",function(){
 });
 
 ut.addCase("TdqUYNpf hn.CryptoStream skip",function(){
-	var fileStream = hn.Stream.fromFile("res/square.png.enc");
+	var fileStream = hn.Stream.fromRes("res/square.png.enc");
 	ut.t("yeleDInW", fileStream!=null);
 	
 	var key = hn.Data.fromHex("0123456789abcdef0123456789abcdef");
@@ -43,7 +43,7 @@ ut.addCaseX("TZkxtijt hn.CryptoStream random skip",function(){
 	var offset_list_list = case_TZkxtijt;
 	
 	for(var offset_list_list_idx=0;offset_list_list_idx<offset_list_list.length;++offset_list_list_idx){
-		var fileStream = hn.Stream.fromFile("res/1MB.dat.enc");
+		var fileStream = hn.Stream.fromRes("res/1MB.dat.enc");
 		ut.t("AxoAFvAK", fileStream!=null);
 		var key = hn.Data.fromHex("0123456789abcdef0123456789abcdef");
 		var iv  = hn.Data.fromHex("fedcba9876543210fedcba9876543210");
@@ -80,7 +80,7 @@ ut.addCaseX("TZkxtijt hn.CryptoStream random skip",function(){
 ut.addCaseX("kvVXICOm hn.CryptoStream random skip 2",function(){
 	var offset_list_list = case_TZkxtijt;
 
-	var fileStream = hn.Stream.fromFile("res/1MB.dat.enc");
+	var fileStream = hn.Stream.fromRes("res/1MB.dat.enc");
 	ut.t("gwFNOvyi", fileStream!=null);
 	var key = hn.Data.fromHex("0123456789abcdef0123456789abcdef");
 	var iv  = hn.Data.fromHex("fedcba9876543210fedcba9876543210");
@@ -124,7 +124,7 @@ ut.addCaseX("YJZPAOpk hn.CryptoStream random skip with zero len",function(){
 	var data = hn.Data.fromFile("res/1MB.dat");
 	
 	for(var offset_list_list_idx=0;offset_list_list_idx<offset_list_list.length;++offset_list_list_idx){
-		var fileStream = hn.Stream.fromFile("res/1MB.dat.enc");
+		var fileStream = hn.Stream.fromRes("res/1MB.dat.enc");
 		ut.t("AxoAFvAK", fileStream!=null);
 		var key = hn.Data.fromHex("0123456789abcdef0123456789abcdef");
 		var iv  = hn.Data.fromHex("fedcba9876543210fedcba9876543210");
@@ -161,7 +161,7 @@ ut.addCaseX("YJZPAOpk hn.CryptoStream random skip with zero len",function(){
 ut.addCase("ZvgkicjI hn.CryptoStream random skip 2 with zero len",function(){
 	var offset_list_list = case_YJZPAOpk;
 
-	var fileStream = hn.Stream.fromFile("res/1MB.dat.enc");
+	var fileStream = hn.Stream.fromRes("res/1MB.dat.enc");
 	ut.t("gwFNOvyi", fileStream!=null);
 	var key = hn.Data.fromHex("0123456789abcdef0123456789abcdef");
 	var iv  = hn.Data.fromHex("fedcba9876543210fedcba9876543210");

@@ -30,6 +30,7 @@ public:
 
 public:
 	static HNRefStream* _fromFile(const std::string& aFilename);
+	static HNRefStream* _fromAndroidAssetFile(const std::string& aFilename,int aMode);
 	static HNRefStream* _crypto(
 		HNRefStream* aStream,
 		const std::string& aType,

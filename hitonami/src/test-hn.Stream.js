@@ -1,5 +1,5 @@
 ut.addCase("UtUjgsbJ hn.Stream file",function(){
-	var stream = hn.Stream.fromFile("res/square.png");
+	var stream = hn.Stream.fromRes("res/square.png");
 	
 	ut.t("Bzelqtrs", stream.open());
 	var data = stream.readAll();
@@ -12,7 +12,7 @@ ut.addCase("UtUjgsbJ hn.Stream file",function(){
 });
 
 ut.addCase("EeJryxhB hn.Stream skip",function(){
-	var stream = hn.Stream.fromFile("res/square.png");
+	var stream = hn.Stream.fromRes("res/square.png");
 	
 	ut.t("ncHTkKCk", stream.open());
 	ut.eq("aagyVaxi",stream.skip(491),491);
@@ -30,12 +30,12 @@ ut.addCase("EeJryxhB hn.Stream skip",function(){
 ut.addCase("CqUbLvPP hn.Stream random skip 2 with zero len",function(){
 	var offset_list_list = case_YJZPAOpk;
 
-	var stream = hn.Stream.fromFile("res/1MB.dat");
+	var stream = hn.Stream.fromRes("res/1MB.dat");
 
 	var data = hn.Data.fromFile("res/1MB.dat");
 	
 	for(var offset_list_list_idx=0;offset_list_list_idx<offset_list_list.length;++offset_list_list_idx){
-		ut.t("CqUbLvPP", stream.open());
+		ut.t("CmXYYLbT", stream.open());
 
 		var offset_list = offset_list_list[offset_list_list_idx];
 		var offset = 0;

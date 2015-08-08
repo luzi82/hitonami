@@ -5,6 +5,7 @@
 #include "HNFileInputStream.h"
 #include "HNInputStream.h"
 #include "HNCryptoAes128CbcDecInputStream.h"
+#include "HNAndroidAssetInputStream.h"
 
 namespace hn{
 
@@ -97,6 +98,24 @@ HNRefStream* HNRefStream::_fromFile(const std::string& aFilename){
 	HNRefStream* ret = new HNRefStream();
 	ret->mInputStream = new HNFileInputStream(aFilename);
 	return ret;
+}
+
+HNRefStream* HNRefStream::_fromAndroidAssetFile(const std::string& aFilename,int aMode){
+
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+	HNRefStream* ret = new HNRefStream();
+	ret->mInputStream = new HNAndroidAssetInputStream(aFilename,aMode);
+	return ret;
+
+// CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#else
+
+	return NULL;
+
+// CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID else
+#endif
+
 }
 
 HNRefStream* HNRefStream::_crypto(

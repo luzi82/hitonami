@@ -8,6 +8,7 @@ LOCAL_MODULE_FILENAME := libcocos2djs
 
 LOCAL_SRC_FILES := hellojavascript/main.cpp \
                    ../../Classes/AppDelegate.cpp \
+                   ../../../js-bindings/hitonami/HNAndroidAssetInputStream.cpp \
                    ../../../js-bindings/hitonami/HNCryptoAes128CbcDecInputStream.cpp \
                    ../../../js-bindings/hitonami/HNFileInputStream.cpp \
                    ../../../js-bindings/hitonami/HNInputStream.cpp \
