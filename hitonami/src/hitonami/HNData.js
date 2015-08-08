@@ -3,7 +3,7 @@ var hn = hn || {};
 /**
  * @class Data
  */
-function __HNData() {
+function __HNRefData() {
 
 	this.setZero = function() {
 		return this.__hndata._setZero();
@@ -18,7 +18,7 @@ function __HNData() {
 
 	/**
 	 * @method equal
-	 * @param {hn::HNData}
+	 * @param {hn::HNRefData}
 	 *          arg0
 	 * @return {bool}
 	 */
@@ -46,7 +46,7 @@ function __HNData() {
 
 	/**
 	 * @method copy
-	 * @param {hn::HNData}
+	 * @param {hn::HNRefData}
 	 *          arg0
 	 */
 	this.copy = function(hndata) {
@@ -70,46 +70,46 @@ function __HNData() {
 	};
 
 	this.mid = function(offset,len) {
-		return hn.Data._fromHNData(this.__hndata._mid(offset,len));
+		return hn.Data._fromHNRefData(this.__hndata._mid(offset,len));
 	};
 
-	this.__hndata = new __hn.HNData();
+	this.__hndata = new __hn.HNRefData();
 	
 };
 
-hn.Data = __HNData;
+hn.Data = __HNRefData;
 
 /**
  * @method fromHex
  * @param {String}
  *          arg0
- * @return {hn::HNData}
+ * @return {hn::HNRefData}
  */
 hn.Data.fromHex = function(str) {
-	return hn.Data._fromHNData( __hn.HNData._fromHex(str) );
+	return hn.Data._fromHNRefData( __hn.HNRefData._fromHex(str) );
 };
 
 /**
  * @method fromFile
  * @param {String}
  *          arg0
- * @return {hn::HNData}
+ * @return {hn::HNRefData}
  */
 hn.Data.fromFile = function(str) {
-	return hn.Data._fromHNData( __hn.HNData._fromFile(str) );
+	return hn.Data._fromHNRefData( __hn.HNRefData._fromFile(str) );
 };
 
 /**
  * @method fromBase64
  * @param {String}
  *          arg0
- * @return {hn::HNData}
+ * @return {hn::HNRefData}
  */
 hn.Data.fromBase64 = function(str) {
-	return hn.Data._fromHNData( __hn.HNData._fromBase64(str) );
+	return hn.Data._fromHNRefData( __hn.HNRefData._fromBase64(str) );
 };
 
-hn.Data._fromHNData = function(hndata){
+hn.Data._fromHNRefData = function(hndata){
 	if (hndata == null)
 		return null;
 	var ret = new hn.Data();

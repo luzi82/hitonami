@@ -9,32 +9,32 @@ class Data;
 
 namespace hn{
 
-class HNData;
+class HNRefData;
 class HNInputStream;
 
-class HNStream : public cocos2d::Ref
+class HNRefStream : public cocos2d::Ref
 {
 public:
-	HNStream();
-	virtual ~HNStream();
+	HNRefStream();
+	virtual ~HNRefStream();
 	bool init();
 
 public:
 	bool _open();
 	void _close();
-	HNData* _read(ssize_t len);
-	HNData* _readAll();
+	HNRefData* _read(ssize_t len);
+	HNRefData* _readAll();
 	ssize_t _skip(ssize_t len);
 	
-	CREATE_FUNC(HNStream);
+	CREATE_FUNC(HNRefStream);
 
 public:
-	static HNStream* _fromFile(const std::string& aFilename);
-	static HNStream* _crypto(
-		HNStream* aStream,
+	static HNRefStream* _fromFile(const std::string& aFilename);
+	static HNRefStream* _crypto(
+		HNRefStream* aStream,
 		const std::string& aType,
-		HNData* aKey,
-		HNData* aIv
+		HNRefData* aKey,
+		HNRefData* aIv
 	);
 
 public:

@@ -2,9 +2,9 @@
 #define __hn_cryptoaes128cbcdecinputstream_h__
 
 #include "HNInputStream.h"
+#include "cocos2d.h"
 
 #include <openssl/bio.h>
-#include "HNData.h"
 
 namespace hn{
 

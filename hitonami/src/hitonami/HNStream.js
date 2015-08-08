@@ -1,6 +1,6 @@
 var hn = hn || {};
 
-function __HNStream() {
+function __HNRefStream() {
 
 	this.open = function(){
 		return this.__hnstream._open();
@@ -14,11 +14,11 @@ function __HNStream() {
 		if(n==0){
 			return new hn.Data();
 		}
-		return hn.Data._fromHNData( this.__hnstream._read(n) );
+		return hn.Data._fromHNRefData( this.__hnstream._read(n) );
 	}
 	
 	this.readAll = function(){
-		return hn.Data._fromHNData( this.__hnstream._readAll() );
+		return hn.Data._fromHNRefData( this.__hnstream._readAll() );
 	}
 	
 	this.skip = function(n){
@@ -29,17 +29,17 @@ function __HNStream() {
 	
 }
 
-hn.Stream = __HNStream;
+hn.Stream = __HNRefStream;
 
 hn.Stream.fromFile = function(str){
-	return hn.Stream._fromHNStream( __hn.HNStream._fromFile(str) );
+	return hn.Stream._fromHNRefStream( __hn.HNRefStream._fromFile(str) );
 }
 
 hn.Stream.crypto = function(stream,method,key,iv){
-	return hn.Stream._fromHNStream( __hn.HNStream._crypto(stream.__hnstream,method,key.__hndata,iv.__hndata) );
+	return hn.Stream._fromHNRefStream( __hn.HNRefStream._crypto(stream.__hnstream,method,key.__hndata,iv.__hndata) );
 }
 
-hn.Stream._fromHNStream = function(hnstream){
+hn.Stream._fromHNRefStream = function(hnstream){
 	if (hnstream == null)
 		return null;
 	var ret = new hn.Stream();

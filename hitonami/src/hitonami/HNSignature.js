@@ -16,7 +16,7 @@ hn.Signature.verify = function(signatureType,checksumType,hash,sign,publicKey){
 	if(publicKey.isEmpty())return false;
 	
 	if(signatureType==hn.Signature.RSA){
-		return __hn.HNOpenssl._verifyRsa(
+		return __hn.HNRefOpenssl._verifyRsa(
 			checksumType,
 			hash.__hndata,
 			sign.__hndata,

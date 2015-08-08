@@ -9,7 +9,7 @@ hn.Checksum.get = function(type,data){
 	if(data==null)return null;
 	
 	if(type==hn.Checksum.SHA256){
-		return hn.Data._fromHNData( __hn.HNOpenssl._checksumSha256(data.__hndata) );
+		return hn.Data._fromHNRefData( __hn.HNRefOpenssl._checksumSha256(data.__hndata) );
 	}
 	return null;
 }

@@ -1,18 +1,18 @@
-#include "HNOpenssl.h"
+#include "HNRefOpenssl.h"
 
 #include <openssl/evp.h>
 #include <openssl/rsa.h>
 #include <openssl/bio.h>
 #include <openssl/pem.h>
-#include "HNData.h"
+#include "HNRefData.h"
 
 namespace hn{
 
-HNOpenssl::HNOpenssl(){}
-HNOpenssl::~HNOpenssl(){}
-bool HNOpenssl::init(){return true;}
+HNRefOpenssl::HNRefOpenssl(){}
+HNRefOpenssl::~HNRefOpenssl(){}
+bool HNRefOpenssl::init(){return true;}
 
-HNData* HNOpenssl::_checksumSha256(HNData* aData){
+HNRefData* HNRefOpenssl::_checksumSha256(HNRefData* aData){
 	if(aData==NULL)return NULL;
 	
 	cocos2d::Data* data=aData->mData;
@@ -26,7 +26,7 @@ HNData* HNOpenssl::_checksumSha256(HNData* aData){
 	}
 	SHA256_Final(hash,&sha256);
 	
-	HNData* ret=new HNData();
+	HNRefData* ret=new HNRefData();
 	ret->_clear();
 	ret->mData=new cocos2d::Data();
 	ret->mData->copy(hash,SHA256_DIGEST_LENGTH);
@@ -34,7 +34,7 @@ HNData* HNOpenssl::_checksumSha256(HNData* aData){
 	return ret;
 }
 
-bool HNOpenssl::_verifyRsa(const std::string& aType,HNData* aHash,HNData* aSign,HNData* aPublicKey){
+bool HNRefOpenssl::_verifyRsa(const std::string& aType,HNRefData* aHash,HNRefData* aSign,HNRefData* aPublicKey){
 	if(aHash==NULL)return false;
 	if(aSign==NULL)return false;
 	if(aPublicKey==NULL)return false;
@@ -76,7 +76,7 @@ bool HNOpenssl::_verifyRsa(const std::string& aType,HNData* aHash,HNData* aSign,
 	return verifyGood==1;
 }
 
-HNData* HNOpenssl::_decrypt(const std::string& aMethod,HNData* aEnc,HNData* aKey,HNData* aIv){
+HNRefData* HNRefOpenssl::_decrypt(const std::string& aMethod,HNRefData* aEnc,HNRefData* aKey,HNRefData* aIv){
 	if(aEnc==NULL)return NULL;
 	if(aKey==NULL)return NULL;
 	if(aIv==NULL)return NULL;
@@ -123,7 +123,7 @@ HNData* HNOpenssl::_decrypt(const std::string& aMethod,HNData* aEnc,HNData* aKey
     retBufLen += tmpInt;
     EVP_CIPHER_CTX_cleanup(&ctx);
 	
-	HNData* ret=new HNData();
+	HNRefData* ret=new HNRefData();
 	ret->_clear();
 	ret->mData=new cocos2d::Data();
 	ret->mData->copy(retBuf,retBufLen);

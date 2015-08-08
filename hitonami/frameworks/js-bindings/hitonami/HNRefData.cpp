@@ -1,4 +1,4 @@
-#include "HNData.h"
+#include "HNRefData.h"
 
 #include "CCData.h"
 #include "CCFileUtils.h"
@@ -11,25 +11,25 @@ extern "C"
 
 namespace hn{
 
-HNData::HNData():
+HNRefData::HNRefData():
 	mData(NULL)
 {
 }
 
-HNData::~HNData()
+HNRefData::~HNRefData()
 {
 	delete mData;
 	mData = NULL;
 }
 
-bool HNData::init(){return true;}
+bool HNRefData::init(){return true;}
 
-int HNData::_getSize(){
+int HNRefData::_getSize(){
 	if(mData==NULL)return 0;
 	return mData->getSize();
 }
 
-void HNData::_copy(HNData* aFrom){
+void HNRefData::_copy(HNRefData* aFrom){
 	delete mData;
 	mData = NULL;
 	
@@ -39,17 +39,17 @@ void HNData::_copy(HNData* aFrom){
 	mData=new cocos2d::Data(*(aFrom->mData));
 }
 
-void HNData::_clear(){
+void HNRefData::_clear(){
 	delete mData;
 	mData = NULL;
 }
 
-bool HNData::_isEmpty(){
+bool HNRefData::_isEmpty(){
 	if(mData==NULL)return true;
 	return mData->isNull();
 }
 
-void HNData::_setZero(){
+void HNRefData::_setZero(){
 	if(mData==NULL)return;
 	if(mData->isNull())return;
 	
@@ -62,7 +62,7 @@ void HNData::_setZero(){
 	memset(buf,0,size);
 }
 
-bool HNData::_equal(HNData* aFrom){
+bool HNRefData::_equal(HNRefData* aFrom){
 	if(aFrom==NULL)return false;
 	if(_isEmpty()&&(aFrom->_isEmpty()))return true;
 	if(_isEmpty())return false;
@@ -72,7 +72,7 @@ bool HNData::_equal(HNData* aFrom){
 	return true; 
 }
 
-HNData* HNData::_mid(int offset,int len){
+HNRefData* HNRefData::_mid(int offset,int len){
 	if(_isEmpty())return NULL;
 	if(len>_getSize()-offset){
 		len=_getSize()-offset;
@@ -80,23 +80,23 @@ HNData* HNData::_mid(int offset,int len){
 	unsigned char* buf=new unsigned char[len];
 	memcpy(buf,mData->getBytes()+offset,len);
 	
-	HNData* ret=new HNData();
+	HNRefData* ret=new HNRefData();
 	ret->mData=new cocos2d::Data();
 	ret->mData->fastSet(buf,len);
 
 	return ret;	
 }
 
-HNData* HNData::_fromFile(const std::string& aFilename){
+HNRefData* HNRefData::_fromFile(const std::string& aFilename){
 	cocos2d::Data d=cocos2d::FileUtils::getInstance()->getDataFromFile(aFilename);
-	HNData* ret=new HNData();
+	HNRefData* ret=new HNRefData();
 	delete ret->mData;
 	ret->mData = NULL;
 	ret->mData=new cocos2d::Data(d);
 	return ret;
 }
 
-std::string HNData::_toHex(){
+std::string HNRefData::_toHex(){
 	if(mData==NULL)return "";
 	if(mData->isNull())return "";
 	ssize_t srcSize = mData->getSize();
@@ -120,7 +120,7 @@ std::string HNData::_toHex(){
 	return ret;
 }
 
-std::string HNData::_toBase64(){
+std::string HNRefData::_toBase64(){
 	if(mData==NULL)return "";
 	if(mData->isNull())return "";
 	ssize_t size = mData->getSize();
@@ -147,7 +147,7 @@ std::string HNData::_toBase64(){
 	return ret;
 }
 
-HNData* HNData::_fromHex(const std::string& aHex){
+HNRefData* HNRefData::_fromHex(const std::string& aHex){
 	int srcSize = aHex.size();
 	if(srcSize&1)return NULL; // odd length
 	
@@ -169,7 +169,7 @@ HNData* HNData::_fromHex(const std::string& aHex){
 		++dstPtr;
 	}
 	
-	HNData* ret=new HNData();
+	HNRefData* ret=new HNRefData();
 	delete ret->mData;ret->mData = NULL;
 	ret->mData = new cocos2d::Data();
 	ret->mData->copy(dstBuf,dstSize);
@@ -180,7 +180,7 @@ HNData* HNData::_fromHex(const std::string& aHex){
 	return ret;
 }
 
-HNData* HNData::_fromBase64(const std::string& aBase64){
+HNRefData* HNRefData::_fromBase64(const std::string& aBase64){
 	int srcSize = aBase64.size();
 	if(srcSize&3)return NULL; // non 4 multi length
 	
@@ -213,7 +213,7 @@ HNData* HNData::_fromBase64(const std::string& aBase64){
 	base64_init_decodestate(&s);
 	dstLen += base64_decode_block(srcPtr, srcSize, (char*) dstBuf, &s);
 
-	HNData* ret=new HNData();
+	HNRefData* ret=new HNRefData();
 	delete ret->mData;ret->mData = NULL;
 	ret->mData = new cocos2d::Data();
 	ret->mData->copy(dstBuf,dstLen);
@@ -223,7 +223,7 @@ HNData* HNData::_fromBase64(const std::string& aBase64){
 	return ret;
 }
 
-bool HNData::_isBase64Char(char c){
+bool HNRefData::_isBase64Char(char c){
 	if((c>='0')&&(c<='9'))return true;
 	if((c>='a')&&(c<='z'))return true;
 	if((c>='A')&&(c<='Z'))return true;
@@ -232,7 +232,7 @@ bool HNData::_isBase64Char(char c){
 	return false;
 }
 
-bool HNData::_isHexChar(char c){
+bool HNRefData::_isHexChar(char c){
 	if((c>='0')&&(c<='9'))return true;
 	if((c>='a')&&(c<='f'))return true;
 	if((c>='A')&&(c<='F'))return true;

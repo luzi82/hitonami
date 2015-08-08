@@ -1,31 +1,31 @@
-#include "HNStream.h"
+#include "HNRefStream.h"
 
 #include "HN.h"
-#include "HNData.h"
+#include "HNRefData.h"
 #include "HNFileInputStream.h"
 #include "HNInputStream.h"
 #include "HNCryptoAes128CbcDecInputStream.h"
 
 namespace hn{
 
-HNStream::HNStream():mInputStream(NULL){}
-HNStream::~HNStream(){
+HNRefStream::HNRefStream():mInputStream(NULL){}
+HNRefStream::~HNRefStream(){
 	delete mInputStream;
 	mInputStream = NULL;
 }
-bool HNStream::init(){return true;}
+bool HNRefStream::init(){return true;}
 
-bool HNStream::_open(){
+bool HNRefStream::_open(){
 	if(mInputStream==NULL)return false;
 	return mInputStream->open();
 }
 
-void HNStream::_close(){
+void HNRefStream::_close(){
 	if(mInputStream==NULL)return;
 	mInputStream->close();
 }
 
-HNData* HNStream::_read(ssize_t len){
+HNRefData* HNRefStream::_read(ssize_t len){
 	if(mInputStream==NULL)return NULL;
 	if(len==0) return NULL;
 	
@@ -36,14 +36,14 @@ HNData* HNStream::_read(ssize_t len){
 		return NULL;
 	}
 	
-	HNData* ret=new HNData();
+	HNRefData* ret=new HNRefData();
 	ret->mData=new cocos2d::Data();
 	ret->mData->fastSet(buf,retLen);
 
 	return ret;
 }
 
-HNData* HNStream::_readAll(){
+HNRefData* HNRefStream::_readAll(){
 	//CCLOG("fworwoTP _readAll");
 	
 	if(mInputStream==NULL)return NULL;
@@ -80,30 +80,30 @@ HNData* HNStream::_readAll(){
 		++itr;
 	}
 	
-	HNData* ret=new HNData();
+	HNRefData* ret=new HNRefData();
 	ret->mData=new cocos2d::Data();
 	ret->mData->fastSet(buf,len);
 	
 	return ret;
 }
 
-ssize_t HNStream::_skip(ssize_t len){
+ssize_t HNRefStream::_skip(ssize_t len){
 	if(mInputStream==NULL)return -1;
 	
 	return mInputStream->skip(len);
 }
 
-HNStream* HNStream::_fromFile(const std::string& aFilename){
-	HNStream* ret = new HNStream();
+HNRefStream* HNRefStream::_fromFile(const std::string& aFilename){
+	HNRefStream* ret = new HNRefStream();
 	ret->mInputStream = new HNFileInputStream(aFilename);
 	return ret;
 }
 
-HNStream* HNStream::_crypto(
-	HNStream* aStream,
+HNRefStream* HNRefStream::_crypto(
+	HNRefStream* aStream,
 	const std::string& aMethod,
-	HNData* aKey,
-	HNData* aIv
+	HNRefData* aKey,
+	HNRefData* aIv
 ){
 	if(aMethod==HN_STREAM_CRYPTO_TYPE_AES128CBC_DEC)
 	{
@@ -112,7 +112,7 @@ HNStream* HNStream::_crypto(
 		decInputStream->setKey(*(aKey->mData));
 		decInputStream->setIv(*(aIv->mData));
 		
-		HNStream* ret = new HNStream();
+		HNRefStream* ret = new HNRefStream();
 		ret->mInputStream = decInputStream;
 		
 		aStream->mInputStream = NULL;

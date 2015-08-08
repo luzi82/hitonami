@@ -10,31 +10,31 @@ class Data;
 
 namespace hn{
 
-class HNData : public cocos2d::Ref
+class HNRefData : public cocos2d::Ref
 {
 public:
-	HNData();
-	virtual ~HNData();
+	HNRefData();
+	virtual ~HNRefData();
 	bool init();
 
 public:
 	int _getSize();
-	void _copy(HNData* aFrom);
+	void _copy(HNRefData* aFrom);
 	void _clear();
 	bool _isEmpty();
 	void _setZero();
-	bool _equal(HNData* aFrom);
-	HNData* _mid(int offset,int len);
+	bool _equal(HNRefData* aFrom);
+	HNRefData* _mid(int offset,int len);
 	
 	std::string _toHex();
 	std::string _toBase64();
 	
-	CREATE_FUNC(HNData);
+	CREATE_FUNC(HNRefData);
 
 public:
-	static HNData* _fromFile(const std::string& aFilename);
-	static HNData* _fromHex(const std::string& aHex);
-	static HNData* _fromBase64(const std::string& aBase64);
+	static HNRefData* _fromFile(const std::string& aFilename);
+	static HNRefData* _fromHex(const std::string& aHex);
+	static HNRefData* _fromBase64(const std::string& aBase64);
 
 public:
 	cocos2d::Data* mData;

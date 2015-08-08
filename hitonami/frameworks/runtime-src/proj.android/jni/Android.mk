@@ -8,11 +8,14 @@ LOCAL_MODULE_FILENAME := libcocos2djs
 
 LOCAL_SRC_FILES := hellojavascript/main.cpp \
                    ../../Classes/AppDelegate.cpp \
+                   ../../../js-bindings/hitonami/HNCryptoAes128CbcDecInputStream.cpp \
+                   ../../../js-bindings/hitonami/HNFileInputStream.cpp \
+                   ../../../js-bindings/hitonami/HNInputStream.cpp \
+                   ../../../js-bindings/hitonami/HNInputStreamBio.cpp \
+                   ../../../js-bindings/hitonami/HNRefData.cpp \
+                   ../../../js-bindings/hitonami/HNRefOpenssl.cpp \
+                   ../../../js-bindings/hitonami/HNRefStream.cpp \
                    ../../../custom/auto/jsb_cocos2dx_hitonami.cpp \
-                   ../../../js-bindings/hitonami/HNCipher.cpp \
-                   ../../../js-bindings/hitonami/HNData.cpp \
-                   ../../../js-bindings/hitonami/HNRsa.cpp \
-                   ../../../js-bindings/hitonami/HNSha256.cpp \
                    ../../../js-bindings/external/libb64-1.2.1/src/cencode.c \
                    ../../../js-bindings/external/libb64-1.2.1/src/cdecode.c
 
