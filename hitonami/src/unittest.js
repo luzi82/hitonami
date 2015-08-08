@@ -25,6 +25,14 @@ ut.addCase=function(t,f){
 	});
 }
 
+// used to ignore case
+ut.addCaseX=function(t,f){
+	ut.caseList.push({
+		title: t,
+		func: function(){cc.log("IGNORED by addCaseX")}
+	});
+}
+
 /*
 ut.run=function(){
 	var i;

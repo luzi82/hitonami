@@ -37,7 +37,7 @@ ut.addCase("UtUjgsbJ hn.CryptoStream skip",function(){
 	ut.t("pwsiRWZV",data0.equal(data1));
 });
 
-ut.addCase("TZkxtijt hn.CryptoStream random skip",function(){
+ut.addCaseX("TZkxtijt hn.CryptoStream random skip",function(){
 	var data = hn.Data.fromFile("res/1MB.dat");
 	
 	var offset_list_list = case_TZkxtijt;
@@ -77,7 +77,7 @@ ut.addCase("TZkxtijt hn.CryptoStream random skip",function(){
 
 });
 
-ut.addCase("kvVXICOm hn.CryptoStream random skip 2",function(){
+ut.addCaseX("kvVXICOm hn.CryptoStream random skip 2",function(){
 	var offset_list_list = case_TZkxtijt;
 
 	var fileStream = hn.Stream.fromFile("res/1MB.dat.enc");
@@ -118,7 +118,7 @@ ut.addCase("kvVXICOm hn.CryptoStream random skip 2",function(){
 
 });
 
-ut.addCase("YJZPAOpk hn.CryptoStream random skip with zero len",function(){
+ut.addCaseX("YJZPAOpk hn.CryptoStream random skip with zero len",function(){
 	var offset_list_list = case_YJZPAOpk;
 
 	var data = hn.Data.fromFile("res/1MB.dat");
