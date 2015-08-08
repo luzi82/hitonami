@@ -74,3 +74,42 @@ ut.addCase("TZkxtijt hn.CryptoStream random skip",function(){
 	}
 
 });
+
+ut.addCase("kvVXICOm hn.CryptoStream random skip 2",function(){
+	var fileStream = hn.Stream.fromFile("res/1MB.dat.enc");
+	ut.t("gwFNOvyi", fileStream!=null);
+	var key = hn.Data.fromHex("0123456789abcdef0123456789abcdef");
+	var iv  = hn.Data.fromHex("fedcba9876543210fedcba9876543210");
+	var stream = hn.Stream.crypto(fileStream,hn.Stream.CRYPTO_TYPE_AES128CBC_DEC,key,iv);
+
+	var data = hn.Data.fromFile("res/1MB.dat");
+	
+	for(var case_TZkxtijt_idx=0;case_TZkxtijt_idx<case_TZkxtijt.length;++case_TZkxtijt_idx){
+		ut.t("aUsehToo", stream.open());
+
+		var offset_list = case_TZkxtijt[case_TZkxtijt_idx];
+		var offset = 0;
+		var offset_idx = 0;
+		while(offset_idx<offset_list.length){
+			var buf_start=offset_list[offset_idx++];
+			var buf_end  =offset_list[offset_idx++];
+			var skip_len = buf_start - offset;
+			var read_len = buf_end - buf_start;
+			
+			ut.eq("ZAObZPuE "+offset_list[0]+" "+buf_start+" "+buf_end);
+			
+			ut.eq("hoOpUvpK",stream.skip(skip_len),skip_len);
+			var data0 = stream.read(read_len);
+			ut.eq("nXVQajtC",data0.getSize(),read_len);	
+
+			var data1 = data.mid(buf_start,read_len);
+			ut.eq("DbmifPRR",data1.getSize(),read_len);
+			ut.t("yjtOXMAw",data0.equal(data1));
+
+			offset=buf_end;
+		}
+		
+		stream.close();
+	}
+
+});
