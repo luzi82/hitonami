@@ -11,7 +11,7 @@ ut.addCase("UtUjgsbJ hn.Stream file",function(){
 	ut.eq("hIuvKdzl",s.toHex(),"98c8abc1c2d429660bd4d6fe12706fa0c3e4f70f68580ad1fc006f35888b9c38");
 });
 
-ut.addCase("UtUjgsbJ hn.Stream skip",function(){
+ut.addCase("EeJryxhB hn.Stream skip",function(){
 	var stream = hn.Stream.fromFile("res/square.png");
 	
 	ut.t("ncHTkKCk", stream.open());

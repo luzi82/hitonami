@@ -1,5 +1,7 @@
 #include "HNFileInputStream.h"
 
+#include "CCFileUtils.h"
+
 namespace hn{
 
 HNFileInputStream::HNFileInputStream(const std::string& aFilename):

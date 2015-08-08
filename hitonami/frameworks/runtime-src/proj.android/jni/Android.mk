@@ -24,7 +24,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
                     $(LOCAL_PATH)/../../../js-bindings/hitonami \
                     $(LOCAL_PATH)/../../../js-bindings/external/libb64-1.2.1/include \
                     $(LOCAL_PATH)/../../../js-bindings/external/openssl-1.0.1l/include \
-                    $(LOCAL_PATH)/../../../js-bindings/external/openssl-1.0.1l/crypto
+                    $(LOCAL_PATH)/../../../js-bindings/external/openssl-1.0.1l/crypto \
+                    $(LOCAL_PATH)/../../../../../3rd-party/openssl-1.0.1l/include \
 
 LOCAL_STATIC_LIBRARIES := cocos_jsb_static
 

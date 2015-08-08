@@ -16,7 +16,7 @@ ut.addCase("YFAMcPgl hn.CryptoStream file",function(){
 	ut.t("VVYjNIWY",data.equal(dataOri));
 });
 
-ut.addCase("UtUjgsbJ hn.CryptoStream skip",function(){
+ut.addCase("TdqUYNpf hn.CryptoStream skip",function(){
 	var fileStream = hn.Stream.fromFile("res/square.png.enc");
 	ut.t("yeleDInW", fileStream!=null);
 	
