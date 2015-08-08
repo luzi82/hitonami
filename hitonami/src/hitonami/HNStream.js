@@ -11,6 +11,9 @@ function __HNStream() {
 	}
 	
 	this.read = function(n){
+		if(n==0){
+			return new hn.Data();
+		}
 		return hn.Data._fromHNData( this.__hnstream._read(n) );
 	}
 	

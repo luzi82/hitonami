@@ -61,6 +61,7 @@ void HNCryptoAes128CbcDecInputStream::close()
 }
 ssize_t HNCryptoAes128CbcDecInputStream::read(unsigned char* buf,ssize_t n)
 {
+	if(n==0)return 0;
 	ssize_t ret = BIO_read(mCipherBio,buf,n);
 	mOffset+=ret;
 	return ret;

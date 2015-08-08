@@ -27,6 +27,7 @@ void HNStream::_close(){
 
 HNData* HNStream::_read(ssize_t len){
 	if(mInputStream==NULL)return NULL;
+	if(len==0) return NULL;
 	
 	unsigned char* buf=new unsigned char[len];
 	int retLen=mInputStream->read(buf,len);
