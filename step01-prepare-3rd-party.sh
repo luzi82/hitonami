@@ -19,6 +19,9 @@ echo "263b83071e6bca15f67898548d8d236e  android-ndk-r10d-linux-x86_64.bin" | md5
 wget http://dl.google.com/android/android-sdk_r24.2-linux.tgz
 echo "a894cfc8c792bd56a3cceae214c975ad  android-sdk_r24.2-linux.tgz" | md5sum -c -
 
+wget https://www.openssl.org/source/openssl-1.0.1l.tar.gz
+echo "cdb22925fc9bc97ccbf1e007661f2aa6  openssl-1.0.1l.tar.gz" | md5sum -c -
+
 unzip cocos2d-js-v3.6.zip
 
 chmod 755 android-ndk-r10d-linux-x86_64.bin
@@ -35,3 +38,5 @@ expect {
 }
 '
 popd
+
+tar -xzvf openssl-1.0.1l.tar.gz
