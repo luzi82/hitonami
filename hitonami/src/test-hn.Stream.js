@@ -34,7 +34,34 @@ ut.addCase("CqUbLvPP hn.Stream random seek 2 with zero len",function(){
 });
 
 function testStream(streamFactory){
+	test_VbTSQqsN(streamFactory);
 	test_YJZPAOpk(streamFactory);
+}
+
+function test_VbTSQqsN(streamFactory){
+	var pairList = case_VbTSQqsN;
+	var stream = streamFactory();
+	var data = hn.Data.fromFile("res/1MB.dat");
+	
+	stream.open();
+	
+	for(var pairListIdx=0;pairListIdx<pairList.length;++pairListIdx){
+		var pair=pairList[pairListIdx];
+		var start=pair[0];
+		var len0=pair[1];
+		var len1=1024*1024-start;
+		if(len1>len0)len1=len0;
+		
+		ut.eq("mNehiCRh",stream.seek(start,hn.Stream.SEEK_SET),0);
+		var data0 = stream.read(len0);
+		ut.eq("MqLlWmnL",data0.getSize(),len1);
+		
+		var data1 = data.mid(start,len1);
+		ut.eq("auRwxbuH",data1.getSize(),len1);
+		ut.t("YWMeZBzK",data0.equal(data1));
+	}
+	
+	stream.close();
 }
 
 function test_YJZPAOpk(streamFactory){
@@ -60,7 +87,7 @@ function test_YJZPAOpk(streamFactory){
 			
 			ut.eq("YYbkCGcF",stream.seek(skip_len,hn.Stream.SEEK_CUR),0);
 			var data0 = stream.read(read_len);
-			ut.eq("IihrHWgk",data0.getSize(),read_len);	
+			ut.eq("IihrHWgk",data0.getSize(),read_len);
 
 			var data1 = data.mid(buf_start,read_len);
 			ut.eq("FYyXdUbd",data1.getSize(),read_len);
