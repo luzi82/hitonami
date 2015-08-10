@@ -53,8 +53,10 @@ function test_VbTSQqsN(streamFactory){
 		if(len1>len0)len1=len0;
 		
 		ut.eq("mNehiCRh",stream.seek(start,hn.Stream.SEEK_SET),0);
+		ut.eq("EoeSLkzB",stream.tell(),start);
 		var data0 = stream.read(len0);
 		ut.eq("MqLlWmnL",data0.getSize(),len1);
+		ut.eq("VxhBnWnJ",stream.tell(),start+len1);
 		
 		var data1 = data.mid(start,len1);
 		ut.eq("auRwxbuH",data1.getSize(),len1);
@@ -86,8 +88,10 @@ function test_YJZPAOpk(streamFactory){
 			ut.eq("jHtHdjHt "+offset_list[0]+" "+buf_start+" "+buf_end);
 			
 			ut.eq("YYbkCGcF",stream.seek(skip_len,hn.Stream.SEEK_CUR),0);
+			ut.eq("xfMqDNai",stream.tell(),buf_start);
 			var data0 = stream.read(read_len);
 			ut.eq("IihrHWgk",data0.getSize(),read_len);
+			ut.eq("QCAhHHMN",stream.tell(),buf_end);
 
 			var data1 = data.mid(buf_start,read_len);
 			ut.eq("FYyXdUbd",data1.getSize(),read_len);

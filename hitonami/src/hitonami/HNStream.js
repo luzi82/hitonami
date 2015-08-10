@@ -24,7 +24,11 @@ function __HNRefStream() {
 	this.seek = function(offset,origin){
 		return this.__hnstream._seek(offset,origin);
 	}
-	
+
+	this.tell = function(){
+		return this.__hnstream._tell();
+	}
+
 	this.__hnstream = null;
 	
 }
