@@ -28,12 +28,22 @@ ut.addCase("EeJryxhB hn.Stream seek",function(){
 });
 
 ut.addCase("CqUbLvPP hn.Stream random seek 2 with zero len",function(){
+	testStream(function(){
+		return hn.Stream.fromRes("res/1MB.dat");
+	});
+});
+
+function testStream(streamFactory){
+	test_YJZPAOpk(streamFactory);
+}
+
+function test_YJZPAOpk(streamFactory){
 	var offset_list_list = case_YJZPAOpk;
-
-	var stream = hn.Stream.fromRes("res/1MB.dat");
-
-	var data = hn.Data.fromFile("res/1MB.dat");
 	
+	var stream = streamFactory();
+	
+	var data = hn.Data.fromFile("res/1MB.dat");
+
 	for(var offset_list_list_idx=0;offset_list_list_idx<offset_list_list.length;++offset_list_list_idx){
 		ut.t("CmXYYLbT", stream.open());
 
@@ -61,5 +71,4 @@ ut.addCase("CqUbLvPP hn.Stream random seek 2 with zero len",function(){
 		
 		stream.close();
 	}
-
-});
+}
