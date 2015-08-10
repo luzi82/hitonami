@@ -66,31 +66,44 @@ ssize_t HNCryptoAes128CbcDecInputStream::read(unsigned char* buf,ssize_t n)
 	mOffset+=ret;
 	return ret;
 }
-ssize_t HNCryptoAes128CbcDecInputStream::skip(ssize_t n)
+int HNCryptoAes128CbcDecInputStream::seek(ssize_t aOffset,int aOrigin)
 {
-	if(n==0)return 0;
+	if(aOrigin==SEEK_SET){
+		return _seek(aOffset);
+	}else if(aOrigin==SEEK_CUR){
+		return _seek(mOffset+aOffset);
+	}else if(aOrigin==SEEK_END){
+		if(mEndOffset<0){
+			mInputStream->seek(0,SEEK_END);
+			mEndOffset=mInputStream->tell();
+			mOffset=mEndOffset;
+			_seek(0);
+		}
+		return _seek(mEndOffset+aOffset);
+	}
+	return -1;
+}
 
+int HNCryptoAes128CbcDecInputStream::_seek(ssize_t aOffset){
 	int result;
-
-	if(n<=BIO_pending(mCipherBio)){
-		unsigned char* tmpBuf=new unsigned char[n+10];
-		ssize_t ret = BIO_read(mCipherBio,tmpBuf,n);
+	int diff = mOffset-aOffset;
+	if(diff==0)return 0;
+	if((diff>0)&&(diff<=BIO_pending(mCipherBio))){
+		unsigned char* tmpBuf=new unsigned char[diff+10];
+		BIO_read(mCipherBio,tmpBuf,diff);
 		delete [] tmpBuf;
-		mOffset+=ret;
-		return ret;
+		mOffset=aOffset;
+		return 0;
 	}
 	
 	freeCipherBio();
-	mInputStream->close();
-	mInputStream->open();
+	mInputStream->seek(0,SEEK_SET);
 	newCipherBio();
 
 	unsigned char tmpBuf0[20];
 	
-	ssize_t skipLen = mOffset+n;
-	
-	ssize_t skipLen0 = skipLen&0xf;
-	ssize_t skipLen1 = skipLen-skipLen0;
+	ssize_t skipLen0 = aOffset&0xf;
+	ssize_t skipLen1 = aOffset-skipLen0;
 
 	if(skipLen1>=16){
 		result=BIO_seek(mCipherBio,skipLen1-16);
@@ -113,9 +126,13 @@ ssize_t HNCryptoAes128CbcDecInputStream::skip(ssize_t n)
 		}
 	}
 	
-	mOffset=skipLen;
+	mOffset=aOffset;
 	
-	return n;
+	return 0;
+}
+
+ssize_t HNCryptoAes128CbcDecInputStream::tell(){
+	return mOffset;
 }
 
 void HNCryptoAes128CbcDecInputStream::newCipherBio(){

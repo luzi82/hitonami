@@ -33,12 +33,16 @@ ssize_t HNFileInputStream::read(unsigned char* buf,ssize_t n)
 	return fread(buf,1,n,mFile);
 }
 
-ssize_t HNFileInputStream::skip(ssize_t n)
+int HNFileInputStream::seek(ssize_t aOffset,int aOrigin)
 {
 	if(mFile==NULL)return -1;
-	int fseekRet=fseek(mFile,n,SEEK_CUR);
-	if(fseekRet==0)return n;
-	return -1;
+	return fseek(mFile,aOffset,aOrigin);
+}
+
+ssize_t HNFileInputStream::tell()
+{
+	if(mFile==NULL)return -1;
+	return ftell(mFile);
 }
 
 }

@@ -24,7 +24,8 @@ public:
 	void _close();
 	HNRefData* _read(ssize_t len);
 	HNRefData* _readAll();
-	ssize_t _skip(ssize_t len);
+	int _seek(ssize_t aOffset,const std::string& aOrigin);
+	ssize_t _tell();
 	
 	CREATE_FUNC(HNRefStream);
 

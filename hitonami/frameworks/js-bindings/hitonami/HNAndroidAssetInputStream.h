@@ -21,7 +21,8 @@ public:
 	virtual bool open();
 	virtual void close();
 	virtual ssize_t read(unsigned char* buf,ssize_t n);
-	virtual ssize_t skip(ssize_t n);
+	virtual int seek(ssize_t aOffset,int aOrigin);
+	virtual ssize_t tell();
 
 public:
 	const std::string mFilename;

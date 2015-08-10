@@ -41,7 +41,7 @@ long TEMHQUTR_ctrl(BIO *b, int cmd, long num, void *ptr){
 long TEMHQUTR_ctrl_seek(BIO *b, int cmd, long num, void *ptr)
 {
 	HNInputStream*inputStream = (HNInputStream*)b->ptr;
-	return inputStream->skip(num);
+	return inputStream->seek(num,SEEK_CUR);
 }
 
 long TEMHQUTR_callback_ctrl(BIO *b, int cmd, bio_info_cb *fp)

@@ -25,7 +25,7 @@ ut.addCase("TdqUYNpf hn.CryptoStream skip",function(){
 	stream = hn.Stream.crypto(fileStream,hn.Stream.CRYPTO_TYPE_AES128CBC_DEC,key,iv);
 
 	ut.t("KlAQcani", stream.open());
-	ut.eq("FDXWoOon",stream.skip(491),491);
+	ut.eq("FDXWoOon",stream.seek(491,hn.Stream.SEEK_CUR),0);
 	var data0 = stream.read(503);
 	ut.eq("lHRvqfHZ",data0.getSize(),503);	
 	stream.close();
@@ -61,7 +61,7 @@ ut.addCaseX("TZkxtijt hn.CryptoStream random skip",function(){
 			
 			ut.eq("YigETNRl "+offset_list[0]+" "+buf_start+" "+buf_end);
 			
-			ut.eq("GwZgbBao",stream.skip(skip_len),skip_len);
+			ut.eq("GwZgbBao",stream.seek(skip_len,hn.Stream.SEEK_CUR),0);
 			var data0 = stream.read(read_len);
 			ut.eq("KiEOPUEK",data0.getSize(),read_len);	
 
@@ -102,7 +102,7 @@ ut.addCaseX("kvVXICOm hn.CryptoStream random skip 2",function(){
 			
 			ut.eq("ZAObZPuE "+offset_list[0]+" "+buf_start+" "+buf_end);
 			
-			ut.eq("hoOpUvpK",stream.skip(skip_len),skip_len);
+			ut.eq("hoOpUvpK",stream.seek(skip_len,hn.Stream.SEEK_CUR),0);
 			var data0 = stream.read(read_len);
 			ut.eq("nXVQajtC",data0.getSize(),read_len);	
 
@@ -142,7 +142,7 @@ ut.addCaseX("YJZPAOpk hn.CryptoStream random skip with zero len",function(){
 			
 			ut.eq("YigETNRl "+offset_list[0]+" "+buf_start+" "+buf_end);
 			
-			ut.eq("GwZgbBao",stream.skip(skip_len),skip_len);
+			ut.eq("GwZgbBao",stream.seek(skip_len,hn.Stream.SEEK_CUR),0);
 			var data0 = stream.read(read_len);
 			ut.eq("KiEOPUEK",data0.getSize(),read_len);	
 
@@ -183,7 +183,7 @@ ut.addCase("ZvgkicjI hn.CryptoStream random skip 2 with zero len",function(){
 			
 			ut.eq("ZAObZPuE "+offset_list[0]+" "+buf_start+" "+buf_end);
 			
-			ut.eq("hoOpUvpK",stream.skip(skip_len),skip_len);
+			ut.eq("hoOpUvpK",stream.seek(skip_len,hn.Stream.SEEK_CUR),0);
 			var data0 = stream.read(read_len);
 			ut.eq("nXVQajtC",data0.getSize(),read_len);	
 

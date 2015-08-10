@@ -25,7 +25,8 @@ public:
 	virtual bool open();
 	virtual void close();
 	virtual ssize_t read(unsigned char* buf,ssize_t n);
-	virtual ssize_t skip(ssize_t n);
+	virtual int seek(ssize_t aOffset,int aOrigin);
+	virtual ssize_t tell();
 
 public:
 	HNInputStream* mInputStream;
@@ -36,8 +37,11 @@ public:
 	
 	bool mIsOpen;
 	ssize_t mOffset;
+	ssize_t mEndOffset;
 
 private:
+	int _seek(ssize_t aOffset);
+
 	void newCipherBio();
 	void freeCipherBio();
 };

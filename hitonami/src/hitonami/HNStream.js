@@ -21,8 +21,8 @@ function __HNRefStream() {
 		return hn.Data._fromHNRefData( this.__hnstream._readAll() );
 	}
 	
-	this.skip = function(n){
-		return this.__hnstream._skip(n);
+	this.seek = function(offset,origin){
+		return this.__hnstream._seek(offset,origin);
 	}
 	
 	this.__hnstream = null;
@@ -60,3 +60,7 @@ hn.Stream._fromHNRefStream = function(hnstream){
 }
 
 hn.Stream.CRYPTO_TYPE_AES128CBC_DEC = "AES128CBC_DEC";
+
+hn.Stream.SEEK_SET = "SEEK_SET";
+hn.Stream.SEEK_CUR = "SEEK_CUR";
+hn.Stream.SEEK_END = "SEEK_END";

@@ -11,11 +11,11 @@ ut.addCase("UtUjgsbJ hn.Stream file",function(){
 	ut.eq("hIuvKdzl",s.toHex(),"98c8abc1c2d429660bd4d6fe12706fa0c3e4f70f68580ad1fc006f35888b9c38");
 });
 
-ut.addCase("EeJryxhB hn.Stream skip",function(){
+ut.addCase("EeJryxhB hn.Stream seek",function(){
 	var stream = hn.Stream.fromRes("res/square.png");
 	
 	ut.t("ncHTkKCk", stream.open());
-	ut.eq("aagyVaxi",stream.skip(491),491);
+	ut.eq("aagyVaxi",stream.seek(491,hn.Stream.SEEK_CUR),0);
 	var data0 = stream.read(503);
 	ut.eq("YlpTJtFw",data0.getSize(),503);	
 	stream.close();
@@ -27,7 +27,7 @@ ut.addCase("EeJryxhB hn.Stream skip",function(){
 	ut.t("TFBpyZxc",data0.equal(data1));
 });
 
-ut.addCase("CqUbLvPP hn.Stream random skip 2 with zero len",function(){
+ut.addCase("CqUbLvPP hn.Stream random seek 2 with zero len",function(){
 	var offset_list_list = case_YJZPAOpk;
 
 	var stream = hn.Stream.fromRes("res/1MB.dat");
@@ -48,7 +48,7 @@ ut.addCase("CqUbLvPP hn.Stream random skip 2 with zero len",function(){
 			
 			ut.eq("jHtHdjHt "+offset_list[0]+" "+buf_start+" "+buf_end);
 			
-			ut.eq("YYbkCGcF",stream.skip(skip_len),skip_len);
+			ut.eq("YYbkCGcF",stream.seek(skip_len,hn.Stream.SEEK_CUR),0);
 			var data0 = stream.read(read_len);
 			ut.eq("IihrHWgk",data0.getSize(),read_len);	
 

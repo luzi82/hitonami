@@ -88,10 +88,25 @@ HNRefData* HNRefStream::_readAll(){
 	return ret;
 }
 
-ssize_t HNRefStream::_skip(ssize_t len){
+int HNRefStream::_seek(ssize_t aOffset,const std::string& aOrigin){
 	if(mInputStream==NULL)return -1;
 	
-	return mInputStream->skip(len);
+	int origin=-1;
+	if(aOrigin=="SEEK_SET"){
+		origin=SEEK_SET;
+	}else if(aOrigin=="SEEK_CUR"){
+		origin=SEEK_CUR;
+	}else if(aOrigin=="SEEK_END"){
+		origin=SEEK_END;
+	}else{
+		return -1;
+	}
+	
+	return mInputStream->seek(aOffset,origin);
+}
+
+ssize_t HNRefStream::_tell(){
+	return mInputStream->tell();
 }
 
 HNRefStream* HNRefStream::_fromFile(const std::string& aFilename){

@@ -40,14 +40,19 @@ ssize_t HNAndroidAssetInputStream::read(unsigned char* buf,ssize_t n)
 	return ret;
 }
 
-ssize_t HNAndroidAssetInputStream::skip(ssize_t n)
+int HNAndroidAssetInputStream::seek(ssize_t aOffset,int aOrigin)
 {
 	if(mFile==NULL)return -1;
-	int fseekRet=AAsset_seek(mFile,n,SEEK_CUR);
+	int fseekRet=AAsset_seek(mFile,n,aOrigin);
 	if(fseekRet==-1)return -1;
-	ssize_t ret=fseekRet-mOffset;
 	mOffset=fseekRet;
-	return ret;
+	return 0;
+}
+
+ssize_t HNAndroidAssetInputStream::tell()
+{
+	if(mFile==NULL)return -1;
+	return mOffset;
 }
 
 }
