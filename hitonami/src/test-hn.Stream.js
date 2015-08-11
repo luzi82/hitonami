@@ -28,20 +28,19 @@ ut.addCase("EeJryxhB hn.Stream seek",function(){
 });
 
 ut.addCase("CqUbLvPP hn.Stream random seek 2 with zero len",function(){
-	testStream(function(){
-		return hn.Stream.fromRes("res/1MB.dat");
+	testStream(function(s){
+		return hn.Stream.fromRes("res/"+s);
 	});
 });
 
 function testStream(streamFactory){
-	test_VbTSQqsN(streamFactory);
-	test_YJZPAOpk(streamFactory);
+	test_VbTSQqsN(streamFactory,case_VbTSQqsN,"1MB.dat");
+	test_YJZPAOpk(streamFactory,case_YJZPAOpk,"1MB.dat");
 }
 
-function test_VbTSQqsN(streamFactory){
-	var pairList = case_VbTSQqsN;
-	var stream = streamFactory();
-	var data = hn.Data.fromFile("res/1MB.dat");
+function test_VbTSQqsN(streamFactory,pairList,s){
+	var stream = streamFactory(s);
+	var data = hn.Data.fromFile("res/"+s);
 	
 	stream.open();
 	
@@ -66,12 +65,12 @@ function test_VbTSQqsN(streamFactory){
 	stream.close();
 }
 
-function test_YJZPAOpk(streamFactory){
-	var offset_list_list = case_YJZPAOpk;
+function test_YJZPAOpk(streamFactory,offsetListList,s){
+	var offset_list_list = offsetListList;
 	
-	var stream = streamFactory();
+	var stream = streamFactory(s);
 	
-	var data = hn.Data.fromFile("res/1MB.dat");
+	var data = hn.Data.fromFile("res/"+s);
 
 	for(var offset_list_list_idx=0;offset_list_list_idx<offset_list_list.length;++offset_list_list_idx){
 		ut.t("CmXYYLbT", stream.open());
