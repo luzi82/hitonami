@@ -41,6 +41,7 @@ function testStream(streamFactory){
 function test_VbTSQqsN(streamFactory,pairList,s){
 	var stream = streamFactory(s);
 	var data = hn.Data.fromFile("res/"+s);
+	var dataSize = data.getSize();
 	
 	stream.open();
 	
@@ -48,7 +49,7 @@ function test_VbTSQqsN(streamFactory,pairList,s){
 		var pair=pairList[pairListIdx];
 		var start=pair[0];
 		var len0=pair[1];
-		var len1=1024*1024-start;
+		var len1=dataSize-start;
 		if(len1>len0)len1=len0;
 		
 		ut.eq("mNehiCRh",stream.seek(start,hn.Stream.SEEK_SET),0);
