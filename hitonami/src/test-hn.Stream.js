@@ -27,6 +27,14 @@ ut.addCase("EeJryxhB hn.Stream seek",function(){
 	ut.t("TFBpyZxc",data0.equal(data1));
 });
 
+ut.addCase("WzKQxnLx file not exist",function(){
+	var stream = hn.Stream.fromRes("res/not_exist");
+	ut.t("XjaWQkPC", stream!=null);
+	ut.eq("xLCpUiOI", stream.open(), false);
+	
+	stream.close();
+});
+
 ut.addCase("CqUbLvPP hn.Stream random seek 2 with zero len",function(){
 	testStream(function(s){
 		return hn.Stream.fromRes("res/"+s);
@@ -36,6 +44,8 @@ ut.addCase("CqUbLvPP hn.Stream random seek 2 with zero len",function(){
 function testStream(streamFactory){
 	test_VbTSQqsN(streamFactory,case_VbTSQqsN,"1MB.dat");
 	test_YJZPAOpk(streamFactory,case_YJZPAOpk,"1MB.dat");
+	test_VbTSQqsN(streamFactory,case_VbTSQqsN,"406087B.dat");
+	test_YJZPAOpk(streamFactory,case_YJZPAOpk,"406087B.dat");
 }
 
 function test_VbTSQqsN(streamFactory,pairList,s){
@@ -43,7 +53,7 @@ function test_VbTSQqsN(streamFactory,pairList,s){
 	var data = hn.Data.fromFile("res/"+s);
 	var dataSize = data.getSize();
 	
-	stream.open();
+	ut.t("gVlkRQfU", stream.open());
 	
 	for(var pairListIdx=0;pairListIdx<pairList.length;++pairListIdx){
 		var pair=pairList[pairListIdx];
@@ -52,15 +62,20 @@ function test_VbTSQqsN(streamFactory,pairList,s){
 		var len1=dataSize-start;
 		if(len1>len0)len1=len0;
 		
-		ut.eq("mNehiCRh",stream.seek(start,hn.Stream.SEEK_SET),0);
-		ut.eq("EoeSLkzB",stream.tell(),start);
-		var data0 = stream.read(len0);
-		ut.eq("MqLlWmnL",data0.getSize(),len1);
-		ut.eq("VxhBnWnJ",stream.tell(),start+len1);
-		
-		var data1 = data.mid(start,len1);
-		ut.eq("auRwxbuH",data1.getSize(),len1);
-		ut.t("YWMeZBzK",data0.equal(data1));
+		if(start<=dataSize){
+			ut.eq("mNehiCRh",stream.seek(start,hn.Stream.SEEK_SET),0);
+			ut.eq("EoeSLkzB",stream.tell(),start);
+			var data0 = stream.read(len0);
+
+			ut.eq("MqLlWmnL",data0.getSize(),len1);
+			ut.eq("VxhBnWnJ",stream.tell(),start+len1);
+			
+			var data1 = data.mid(start,len1);
+			ut.eq("auRwxbuH",data1.getSize(),len1);
+			ut.t("YWMeZBzK",data0.equal(data1));
+		}else{
+			ut.eq("VyrAAmZM "+s+" "+start,stream.seek(start,hn.Stream.SEEK_SET),-1);
+		}
 	}
 	
 	stream.close();
@@ -72,6 +87,7 @@ function test_YJZPAOpk(streamFactory,offsetListList,s){
 	var stream = streamFactory(s);
 	
 	var data = hn.Data.fromFile("res/"+s);
+	var dataSize = data.getSize();
 
 	for(var offset_list_list_idx=0;offset_list_list_idx<offset_list_list.length;++offset_list_list_idx){
 		ut.t("CmXYYLbT", stream.open());
@@ -84,20 +100,26 @@ function test_YJZPAOpk(streamFactory,offsetListList,s){
 			var buf_end  =offset_list[offset_idx++];
 			var skip_len = buf_start - offset;
 			var read_len = buf_end - buf_start;
+			var expected_tell = (buf_end<dataSize)?buf_end:dataSize;
+			var expected_read_len = expected_tell-buf_start;
 			
 			ut.eq("jHtHdjHt "+offset_list[0]+" "+buf_start+" "+buf_end);
 			
+			if(buf_start>dataSize){
+				ut.eq("YYbkCGcF "+s,stream.seek(skip_len,hn.Stream.SEEK_CUR),-1);
+				break;
+			}
 			ut.eq("YYbkCGcF",stream.seek(skip_len,hn.Stream.SEEK_CUR),0);
 			ut.eq("xfMqDNai",stream.tell(),buf_start);
 			var data0 = stream.read(read_len);
-			ut.eq("IihrHWgk",data0.getSize(),read_len);
-			ut.eq("QCAhHHMN",stream.tell(),buf_end);
+			ut.eq("IihrHWgk",data0.getSize(),expected_read_len);
+			ut.eq("QCAhHHMN",stream.tell(),expected_tell);
 
 			var data1 = data.mid(buf_start,read_len);
-			ut.eq("FYyXdUbd",data1.getSize(),read_len);
+			ut.eq("FYyXdUbd",data1.getSize(),expected_read_len);
 			ut.t("ZHBZpnko",data0.equal(data1));
 
-			offset=buf_end;
+			offset=expected_tell;
 		}
 		
 		stream.close();

@@ -22,6 +22,7 @@ public:
 public:
 	const std::string mFilename;
 	FILE* mFile;
+	ssize_t mFileSize;
 
 };
 

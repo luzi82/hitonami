@@ -44,6 +44,7 @@ ut.addCase("ZvgkicjI hn.CryptoStream random skip 2 with zero len",function(){
 		var key = hn.Data.fromHex("0123456789abcdef0123456789abcdef");
 		var iv  = hn.Data.fromHex("fedcba9876543210fedcba9876543210");
 		var stream = hn.Stream.crypto(fileStream,hn.Stream.CRYPTO_TYPE_AES128CBC_DEC,key,iv);
+		ut.t("MiDKAmpK", stream!=null);
 		return stream;
 	});
 });
