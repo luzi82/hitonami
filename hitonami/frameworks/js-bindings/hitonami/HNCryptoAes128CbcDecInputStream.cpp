@@ -12,7 +12,8 @@ mKey(NULL),
 mIv(NULL),
 mCipherBio(NULL),
 mIsOpen(false),
-mOffset(0)
+mOffset(0),
+mEndOffset(-1)
 {}
 HNCryptoAes128CbcDecInputStream::~HNCryptoAes128CbcDecInputStream()
 {
@@ -74,10 +75,17 @@ int HNCryptoAes128CbcDecInputStream::seek(ssize_t aOffset,int aOrigin)
 		return _seek(mOffset+aOffset);
 	}else if(aOrigin==SEEK_END){
 		if(mEndOffset<0){
-			mInputStream->seek(0,SEEK_END);
-			mEndOffset=mInputStream->tell();
+			int ret;
+			ret=mInputStream->seek(0,SEEK_END);
+			if(ret==-1)return -1;
+			ssize_t inputLen=mInputStream->tell();
+			ssize_t seekLen=(inputLen-32)&(~0xf);
+			ret=mInputStream->seek(seekLen,SEEK_SET);
+			if(ret==-1)return -1;
+			unsigned char tmpBuf[40];
+			ssize_t readLen=BIO_read(mCipherBio,tmpBuf,32);
+			mEndOffset=seekLen+readLen;
 			mOffset=mEndOffset;
-			_seek(0);
 		}
 		return _seek(mEndOffset+aOffset);
 	}
@@ -94,6 +102,13 @@ int HNCryptoAes128CbcDecInputStream::_seek(ssize_t aOffset){
 		delete [] tmpBuf;
 		mOffset=aOffset;
 		return 0;
+	}
+
+	if(aOffset<0){
+		return -1;
+	}	
+	if((mEndOffset>=0)&&(aOffset>mEndOffset)){
+		return -1;
 	}
 	
 	freeCipherBio();
