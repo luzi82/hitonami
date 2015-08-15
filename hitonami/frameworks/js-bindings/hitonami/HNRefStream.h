@@ -38,6 +38,11 @@ public:
 		HNRefData* aKey,
 		HNRefData* aIv
 	);
+	static HNRefStream* _fromArchiveStream(
+		HNRefStream* aStream,
+		const std::string& aEntryName,
+		const std::string& aType
+	);
 
 public:
 	HNInputStream* mInputStream;

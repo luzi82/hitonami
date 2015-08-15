@@ -265,11 +265,14 @@ include_directories(
   frameworks/custom/auto
   frameworks/js-bindings/hitonami
   frameworks/js-bindings/external/libb64-1.2.1/include
+  frameworks/js-bindings/cocos2d-x/external/unzip
 )
 
 set(GAME_SRC
   frameworks/runtime-src/proj.linux/main.cpp
   frameworks/runtime-src/Classes/AppDelegate.cpp
+  frameworks/js-bindings/hitonami/wrapper/unzip/HNUnzipInputStream.cpp
+  frameworks/js-bindings/hitonami/wrapper/unzip/HNUnzipInputStreamUf.cpp
   frameworks/js-bindings/hitonami/HNCryptoAes128CbcDecInputStream.cpp
   frameworks/js-bindings/hitonami/HNFileInputStream.cpp
   frameworks/js-bindings/hitonami/HNInputStream.cpp

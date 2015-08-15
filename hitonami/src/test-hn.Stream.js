@@ -41,7 +41,18 @@ ut.addCase("CqUbLvPP hn.Stream random seek 2 with zero len",function(){
 	});
 });
 
+ut.addCase("IACAMXLB test_CSHGEYOR",function(){
+	test_CSHGEYOR(
+			function(s){
+				return hn.Stream.fromRes("res/"+s);
+			},
+			case_CSHGEYOR,
+			"zip000.zip"
+	);
+});
+
 function testStream(streamFactory){
+	return;
 	test_qbrFviLR(streamFactory,"406087B.dat");
 	test_qbrFviLR(streamFactory,"1MB.dat");
 	test_VbTSQqsN(streamFactory,case_VbTSQqsN,"1MB.dat");
@@ -140,4 +151,37 @@ function test_qbrFviLR(streamFactory,s){
 	ut.eq("eLYtPWsB "+s,stream.tell(),dataSize);
 
 	stream.close();
+}
+
+function test_CSHGEYOR(streamFactory,opList,s){
+	var stream = streamFactory(s);
+	
+	var data = hn.Data.fromFile("res/"+s);
+
+	var dataSize = data.getSize();
+	var offset = 0;
+	
+	for(var i in opList){
+		var op=opList[i];
+		if(op["op"]=="open"){
+			ut.t("XIFGOMJH",stream.open());
+			offset=0;
+		}else if(op["op"]=="seek"){
+			ut.eq("ZSSUSCAV",stream.seek(op["offset"],op["type"]),0);
+			if(op["type"]==hn.Stream.SEEK_SET)offset=0;
+			else if(op["type"]==hn.Stream.SEEK_END)offset=dataSize;
+			offset+=op["offset"];
+		}else if(op["op"]=="tell"){
+			ut.eq("XDACYPRS",stream.tell(),offset);
+		}else if(op["op"]=="read"){
+			var tmp=stream.read(op["len"]);
+			ut.eq("VYDRTSJH",tmp.getSize(),op["len"]);
+			ut.t("HHOPVJWD",tmp.equal(data.mid(offset,op["len"])));
+			offset+=op["len"];
+		}else if(op["op"]=="close"){
+			stream.close();
+		}else{
+			ut.t("TRXKKEXK",false);
+		}
+	}
 }

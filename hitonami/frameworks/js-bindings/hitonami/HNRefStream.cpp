@@ -6,6 +6,7 @@
 #include "HNInputStream.h"
 #include "HNCryptoAes128CbcDecInputStream.h"
 #include "HNAndroidAssetInputStream.h"
+#include "wrapper/unzip/HNUnzipInputStream.h"
 
 namespace hn{
 
@@ -150,6 +151,28 @@ HNRefStream* HNRefStream::_crypto(
 		ret->mInputStream = decInputStream;
 		
 		aStream->mInputStream = NULL;
+		
+		return ret;
+	}
+	return NULL;
+}
+
+HNRefStream* HNRefStream::_fromArchiveStream(
+	HNRefStream* aStream,
+	const std::string& aEntryName,
+	const std::string& aType
+){
+	if(aType=="ARCHIVE_ZIP")
+	{
+		HNInputStream* inputStream = aStream->mInputStream;
+		aStream->mInputStream = NULL;
+	
+		HNUnzipInputStream* retInputStream = new HNUnzipInputStream(inputStream,aEntryName);
+		inputStream = NULL;
+		
+		HNRefStream* ret = new HNRefStream();
+		ret->mInputStream = retInputStream;
+		retInputStream = NULL;
 		
 		return ret;
 	}

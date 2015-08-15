@@ -55,6 +55,12 @@ hn.Stream.crypto = function(stream,method,key,iv){
 	return hn.Stream._fromHNRefStream( __hn.HNRefStream._crypto(stream.__hnstream,method,key.__hndata,iv.__hndata) );
 }
 
+hn.Stream.fromArchiveStream = function(stream,entryName,type){
+	return hn.Stream._fromHNRefStream( __hn.HNRefStream._fromArchiveStream(stream.__hnstream,entryName,type) );
+}
+
+hn.Stream.ARCHIVE_ZIP = "ARCHIVE_ZIP";
+
 hn.Stream._fromHNRefStream = function(hnstream){
 	if (hnstream == null)
 		return null;
