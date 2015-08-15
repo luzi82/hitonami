@@ -40,11 +40,11 @@ ut.addCase("TdqUYNpf hn.CryptoStream skip",function(){
 ut.addCase("ZvgkicjI hn.CryptoStream random skip 2 with zero len",function(){
 	testStream(function(s){
 		var fileStream = hn.Stream.fromRes("res/"+s+".enc");
-		ut.t("gwFNOvyi", fileStream!=null);
+		ut.tt("gwFNOvyi", fileStream!=null);
 		var key = hn.Data.fromHex("0123456789abcdef0123456789abcdef");
 		var iv  = hn.Data.fromHex("fedcba9876543210fedcba9876543210");
 		var stream = hn.Stream.crypto(fileStream,hn.Stream.CRYPTO_TYPE_AES128CBC_DEC,key,iv);
-		ut.t("MiDKAmpK", stream!=null);
+		ut.tt("MiDKAmpK", stream!=null);
 		return stream;
 	});
 });

@@ -8,9 +8,23 @@ ut.eq = function(m,a,b){
 	throw("CASE FAIL: "+m+" "+a+"!="+b);
 }
 
+ut.eqq = function(m,a,b){
+	if(a==b){
+		return;
+	}
+	throw("CASE FAIL: "+m+" "+a+"!="+b);
+}
+
 ut.t = function(m,a){
 	if(a){
 		cc.log("CASE PASS: "+m);
+		return;
+	}
+	throw("CASE FAIL: "+m)
+}
+
+ut.tt = function(m,a){
+	if(a){
 		return;
 	}
 	throw("CASE FAIL: "+m)

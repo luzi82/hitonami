@@ -151,16 +151,16 @@ ut.addCase("bLRWLcbT hn.Data",function(){
 		var len=c[2];
 		
 		var bin0=hn.Data.fromHex(hex);
-		ut.eq("piNVJGkF "+len,bin0.getSize(),len);
-		ut.eq("AsKUhpCr "+len,bin0.toHex(),hex);
-		ut.eq("VviZBmoM "+len,bin0.toBase64(),b64);
+		ut.eqq("piNVJGkF "+len,bin0.getSize(),len);
+		ut.eqq("AsKUhpCr "+len,bin0.toHex(),hex);
+		ut.eqq("VviZBmoM "+len,bin0.toBase64(),b64);
 
 		var bin1=hn.Data.fromBase64(b64);
-		ut.eq("eRoFeuQV "+len,bin1.getSize(),len);
-		ut.eq("EmurIEdQ "+len,bin1.toHex(),hex);
-		ut.eq("yxFfKWGk "+len,bin1.toBase64(),b64);
+		ut.eqq("eRoFeuQV "+len,bin1.getSize(),len);
+		ut.eqq("EmurIEdQ "+len,bin1.toHex(),hex);
+		ut.eqq("yxFfKWGk "+len,bin1.toBase64(),b64);
 		
-		ut.t("uEXtTYnh "+len,bin0.equal(bin1));
+		ut.tt("uEXtTYnh "+len,bin0.equal(bin1));
 	}
 });
 
@@ -219,8 +219,8 @@ ut.addCase("BjPyLrwy hn.Data upper",function(){
 		hex=hex.toUpperCase();
 		
 		var bin0=hn.Data.fromHex(hex);
-		ut.eq("sZOPnfvk "+len,bin0.getSize(),len);
-		ut.eq("dvIIGYxV "+len,bin0.toBase64(),b64);
+		ut.eqq("sZOPnfvk "+len,bin0.getSize(),len);
+		ut.eqq("dvIIGYxV "+len,bin0.toBase64(),b64);
 	}
 });
 
