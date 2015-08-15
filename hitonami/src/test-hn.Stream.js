@@ -48,6 +48,7 @@ function testStream(streamFactory){
 	test_YJZPAOpk(streamFactory,case_YJZPAOpk,"1MB.dat");
 	test_VbTSQqsN(streamFactory,case_VbTSQqsN,"406087B.dat");
 	test_YJZPAOpk(streamFactory,case_YJZPAOpk,"406087B.dat");
+	test_VbTSQqsN(streamFactory,case_WXFCLXGW,"406087B.dat");
 }
 
 function test_VbTSQqsN(streamFactory,pairList,s){
@@ -74,7 +75,7 @@ function test_VbTSQqsN(streamFactory,pairList,s){
 			
 			var data1 = data.mid(start,len1);
 			ut.eq("auRwxbuH",data1.getSize(),len1);
-			ut.t("YWMeZBzK",data0.equal(data1));
+			ut.t("YWMeZBzK "+s+" "+start,data0.equal(data1));
 		}else{
 			ut.eq("VyrAAmZM "+s+" "+start,stream.seek(start,hn.Stream.SEEK_SET),-1);
 		}
@@ -105,7 +106,7 @@ function test_YJZPAOpk(streamFactory,offsetListList,s){
 			var expected_tell = (buf_end<dataSize)?buf_end:dataSize;
 			var expected_read_len = expected_tell-buf_start;
 			
-			ut.eq("jHtHdjHt "+offset_list[0]+" "+buf_start+" "+buf_end);
+			ut.t("jHtHdjHt "+offset_list[0]+" "+buf_start+" "+buf_end,true);
 			
 			if(buf_start>dataSize){
 				ut.eq("YYbkCGcF "+s,stream.seek(skip_len,hn.Stream.SEEK_CUR),-1);
