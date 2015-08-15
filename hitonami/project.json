@@ -29,6 +29,7 @@
         "src/test-hn.Cipher.js",
         "src/test-hn.CryptoStream.js",
         "src/test-hn.Stream.Archive.js",
+        "src/test-hn.Stream.Crypto.Archive.js",
         "src/resource.js",
         "src/app.js"
     ]
