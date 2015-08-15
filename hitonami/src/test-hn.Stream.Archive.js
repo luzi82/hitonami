@@ -11,3 +11,11 @@ ut.addCase("cIhHXCFO hn.Stream.Archive basic",function(){
 	ut.eq("OMLKXCWX",archiveStreamData.getSize(),data.getSize());
 	ut.t("xtFLifRE",archiveStreamData.equal(data));
 });
+
+ut.addCase("PKVVNITU hn.Stream.Archive testStream",function(){
+	testStream(function(s){
+		var resStream = hn.Stream.fromRes("res/zip001.zip");
+		var archiveStream = hn.Stream.fromArchiveStream(resStream,s,hn.Stream.ARCHIVE_ZIP);
+		return archiveStream;
+	});
+});

@@ -52,7 +52,6 @@ ut.addCase("IACAMXLB test_CSHGEYOR",function(){
 });
 
 function testStream(streamFactory){
-	return;
 	test_qbrFviLR(streamFactory,"406087B.dat");
 	test_qbrFviLR(streamFactory,"1MB.dat");
 	test_VbTSQqsN(streamFactory,case_VbTSQqsN,"1MB.dat");
