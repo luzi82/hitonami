@@ -13,3 +13,13 @@ hn.Checksum.get = function(type,data){
 	}
 	return null;
 }
+
+hn.Checksum.fromStream = function(type,stream){
+	if(type==null)return null;
+	if(stream==null)return null;
+	
+	if(type==hn.Checksum.SHA256){
+		return hn.Data._fromHNRefData( __hn.HNRefOpenssl._checksumSha256Stream(stream.__hnstream) );
+	}
+	return null;
+}

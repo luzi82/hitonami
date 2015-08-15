@@ -6,6 +6,7 @@
 namespace hn{
 
 class HNRefData;
+class HNRefStream;
 
 class HNRefOpenssl : public cocos2d::Ref
 {
@@ -18,6 +19,7 @@ public:
 
 public:
 	static HNRefData* _checksumSha256(HNRefData* aData);
+	static HNRefData* _checksumSha256Stream(HNRefStream* aStream);
 
 	static bool _verifyRsa(const std::string&aType,HNRefData* aHash,HNRefData* aSign,HNRefData* aPublicKey);
 

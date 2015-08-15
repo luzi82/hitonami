@@ -5,6 +5,8 @@
 #include <openssl/bio.h>
 #include <openssl/pem.h>
 #include "HNRefData.h"
+#include "HNRefStream.h"
+#include "HNInputStream.h"
 
 namespace hn{
 
@@ -25,6 +27,36 @@ HNRefData* HNRefOpenssl::_checksumSha256(HNRefData* aData){
 		SHA256_Update(&sha256, data->getBytes(), data->getSize());
 	}
 	SHA256_Final(hash,&sha256);
+	
+	HNRefData* ret=new HNRefData();
+	ret->_clear();
+	ret->mData=new cocos2d::Data();
+	ret->mData->copy(hash,SHA256_DIGEST_LENGTH);
+	
+	return ret;
+}
+
+HNRefData* HNRefOpenssl::_checksumSha256Stream(HNRefStream* aStream){
+	if(aStream==NULL)return NULL;
+	
+	HNInputStream* stream=aStream->mInputStream;
+	if(stream==NULL)return NULL;
+
+	unsigned char hash[SHA256_DIGEST_LENGTH];
+	const int READ_LEN=4096;
+	unsigned char* buf=new unsigned char[READ_LEN+10];
+	ssize_t len;
+	
+	SHA256_CTX sha256;
+	SHA256_Init(&sha256);
+	while(true){
+		len=stream->read(buf,READ_LEN);
+		if(len<=0)break;
+		SHA256_Update(&sha256, buf, len);
+	}
+	SHA256_Final(hash,&sha256);
+	
+	delete [] buf;buf=NULL;
 	
 	HNRefData* ret=new HNRefData();
 	ret->_clear();
