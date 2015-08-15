@@ -94,7 +94,7 @@ int HNCryptoAes128CbcDecInputStream::seek(ssize_t aOffset,int aOrigin)
 
 int HNCryptoAes128CbcDecInputStream::_seek(ssize_t aOffset){
 	int result;
-	int diff = mOffset-aOffset;
+	int diff = aOffset-mOffset;
 	if(diff==0)return 0;
 	if((diff>0)&&(diff<=BIO_pending(mCipherBio))){
 		unsigned char* tmpBuf=new unsigned char[diff+10];
