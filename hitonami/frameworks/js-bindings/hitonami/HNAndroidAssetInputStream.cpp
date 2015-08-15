@@ -43,7 +43,7 @@ ssize_t HNAndroidAssetInputStream::read(unsigned char* buf,ssize_t n)
 int HNAndroidAssetInputStream::seek(ssize_t aOffset,int aOrigin)
 {
 	if(mFile==NULL)return -1;
-	int fseekRet=AAsset_seek(mFile,n,aOrigin);
+	int fseekRet=AAsset_seek(mFile,aOffset,aOrigin);
 	if(fseekRet==-1)return -1;
 	mOffset=fseekRet;
 	return 0;
