@@ -22,6 +22,7 @@
         "src/case-WXFCLXGW.js",
         "src/case-YJZPAOpk.js",
         "src/unittest.js",
+        "src/test-jsb.AssetManager.js",
         "src/test-hn.Data.js",
         "src/test-hn.Checksum.js",
         "src/test-hn.Stream.js",

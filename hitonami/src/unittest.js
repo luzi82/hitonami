@@ -142,6 +142,9 @@ ut.caseUnlock=function(s){
 		return;
 	}
 	ut.caseLockAry.splice(idx,1);
+	if(ut.caseLockAry.length==0){
+		ut.timer(ut.tick);
+	}
 }
 
 ut.next=function(f){

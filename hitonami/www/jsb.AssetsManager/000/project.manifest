@@ -1,0 +1,17 @@
+{
+    "packageUrl" : "http://s3.amazonaws.com/hitonami-dev/src-www/1439699534/www/jsb.AssetsManager/000/",
+    "remoteVersionUrl" : "http://s3.amazonaws.com/hitonami-dev/src-www/1439699534/www/jsb.AssetsManager/000/version.manifest",
+    "remoteManifestUrl" : "http://s3.amazonaws.com/hitonami-dev/src-www/1439699534/www/jsb.AssetsManager/000/project.manifest",
+    "version" : "1.0.0",
+    "engineVersion" : "Cocos2d-JS v3.0 RC0",
+
+    "assets" : {
+        "zip001.zip" : {
+            "md5" : "dd0ef255e77d9cca500ffce96a93bb35"
+        }
+    },
+
+    "searchPaths" : [
+        "res/"
+    ]
+}
