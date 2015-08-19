@@ -47,38 +47,6 @@ ut.addCaseX=function(t,f){
 	});
 }
 
-/*
-ut.run=function(){
-	var i;
-	var allGood=true;
-	for(i in ut.caseList){
-		var c = ut.caseList[i];
-		var good = false;
-		cc.log("TEST START: "+c["title"]);
-		try{
-			c.func();
-			good = true;
-		}catch(e){
-			good = false;
-			cc.log(e);
-		}
-		if(good){
-			cc.log("TEST PASS: "+c.title);
-		}else{
-			allGood = false;
-			cc.log("TEST FAIL: "+c.title);
-		}
-		cc.log("===");
-		if(!good){
-			break;
-		}
-	}
-	if(allGood){
-		cc.log("ALL TEST PASS");
-	}
-}
-*/
-
 ut.testDone = 0;
 ut.good=false;
 ut.active=false;
@@ -142,27 +110,29 @@ ut.caseUnlock=function(s){
 		return;
 	}
 	ut.caseLockAry.splice(idx,1);
-	if(ut.caseLockAry.length==0){
-		ut.timer(ut.tick);
-	}
 }
 
 ut.next=function(f){
 	var ff=function(){
-		try{
-			f();
-		}catch(e){
-			ut.good = false;
-			cc.log(e);
-			ut.timer(ut.tick);
-			return;
-		}
-		if(ut.caseLockAry.length==0){
-			ut.timer(ut.tick);
-		}
+		ut.run(f);
 	};
 	ut.timer(ff);
 }
+
+ut.run=function(f){
+	if(!ut.good)return;
+	try{
+		f();
+	}catch(e){
+		ut.good = false;
+		cc.log(e);
+		ut.timer(ut.tick);
+		return;
+	}
+	if(ut.caseLockAry.length==0){
+		ut.timer(ut.tick);
+	}
+};
 
 ut.timer=function(f){
 	var ff=function(){
